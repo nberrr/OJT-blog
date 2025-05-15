@@ -1,14 +1,13 @@
-import type React from "react"
-import "@/app/globals.css"
+import type { Metadata } from "next"
 import { Inter } from "next/font/google"
+import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 
 const inter = Inter({ subsets: ["latin"] })
 
-export const metadata = {
-  title: "nberrr - The Art of Productive Laziness",
-  description: "A personal journey through OJT experience by John Nebrej N. Rempis",
-    generator: 'v0.dev'
+export const metadata: Metadata = {
+  title: "OJT Blog",
+  description: "A blog documenting my OJT journey",
 }
 
 export default function RootLayout({
@@ -17,9 +16,15 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${inter.className} dark`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}
+          forcedTheme="dark"
+          disableTransitionOnChange
+        >
           {children}
         </ThemeProvider>
       </body>

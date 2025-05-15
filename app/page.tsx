@@ -13,12 +13,21 @@ import {
   Bug,
   Terminal,
   Sparkles,
+  Cog,
+  LifeBuoy,
+  Layers,
+  Wrench,
+  Wifi,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card } from "@/components/ui/card"
+import { getFeaturedPost, getRecentPosts, getImagePath } from "@/lib/utils"
 
 export default function Home() {
+  const featuredPost = getFeaturedPost();
+  const recentPosts = getRecentPosts();
+
   return (
     <div className="min-h-screen bg-[#0a0118] text-white">
       <div className="fixed inset-0 z-0 pointer-events-none">
@@ -70,20 +79,31 @@ export default function Home() {
                   A personal journey through my OJT experience at DOST, documenting how strategic efficiency and smart work can lead to greater productivity than constant busyness.
                   </p>
                   <div className="flex flex-wrap gap-4">
+                    <Link href="/blog">
                     <Button className="bg-purple-600 hover:bg-purple-700 tech-button">
                       Explore My Journey
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
-                    <Button variant="outline" className="border-purple-500/50 hover:bg-purple-500/20">
-                      Learn My Approach
-                    </Button>
+                    </Link>
+                    <Link href="#photo-highlights" scroll={true}>
+                      <Button variant="outline" className="border-purple-500/50 hover:bg-purple-500/20">
+                        View OJT Highlights
+                      </Button>
+                    </Link>
                   </div>
                 </div>
                 <div className="md:w-1/3 flex justify-center">
                   <div className="relative w-48 h-48 md:w-64 md:h-64">
                     <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 animate-pulse blur-md"></div>
                     <div className="absolute inset-1 rounded-full bg-[#0a0118] flex items-center justify-center">
-                      <Sparkles className="h-24 w-24 text-purple-400 opacity-80" />
+                      <Image
+                        src="/DOSTlogo.png"
+                        alt="DOST Logo"
+                        width={120}
+                        height={120}
+                        className="object-contain w-24 h-24 md:w-32 md:h-32"
+                        priority
+                      />
                     </div>
                   </div>
                 </div>
@@ -105,21 +125,21 @@ export default function Home() {
                 <Card className="bg-[#0e0225]/80 border-purple-900/30 overflow-hidden gradient-border">
                   <div className="relative">
                     <Image
-                      src="/placeholder.svg?height=400&width=800&text=Celebration+Event"
-                      alt="Celebration event with people and decorations"
+                      src={getImagePath(featuredPost.src)}
+                      alt={featuredPost.title}
                       width={800}
                       height={400}
                       className="w-full h-[300px] md:h-[400px] object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0e0225] via-[#0e0225]/70 to-transparent"></div>
                     <div className="absolute top-4 right-4">
-                      <Badge className="bg-purple-600 hover:bg-purple-700">WEEK 5</Badge>
+                      <Badge className="bg-purple-600 hover:bg-purple-700">{featuredPost.week}</Badge>
                     </div>
                     <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
                       <div className="flex items-center space-x-4 mb-3">
                         <Badge variant="outline" className="border-purple-500/50 text-purple-300">
                           <Calendar className="h-3 w-3 mr-1" />
-                          March 24-28, 2025
+                          {featuredPost.date}
                         </Badge>
                         <Badge variant="outline" className="border-purple-500/50 text-purple-300">
                           <Tag className="h-3 w-3 mr-1" />
@@ -127,14 +147,12 @@ export default function Home() {
                         </Badge>
                       </div>
                       <h1 className="text-2xl md:text-4xl font-bold mb-3 neon-text">
-                        Beyond the Celebration, We Keep Moving
+                        {featuredPost.title}
                       </h1>
                       <p className="text-gray-300 mb-6 max-w-3xl">
-                        As Women's Month comes to a close, we remain focused and committed to our goals. Development
-                        continues, and so does our drive to build something meaningful. This week brought new challenges
-                        and opportunities for growth.
+                        {featuredPost.description}
                       </p>
-                      <Link href="/blog/beyond-the-celebration-we-keep-moving">
+                      <Link href={`/blog/${featuredPost.slug}`}>
                         <Button className="bg-purple-600 hover:bg-purple-700 tech-button">
                           Read Full Article
                           <ArrowRight className="ml-2 h-4 w-4" />
@@ -153,74 +171,35 @@ export default function Home() {
                 </div>
 
                 <div className="grid gap-6">
-                  {[
-                    {
-                      title: "Coding Through The Quiet Storm",
-                      date: "March 15-19, 2025",
-                      week: 4,
-                      excerpt: "Learning to navigate difficult situations and the tools of my fourth week.",
-                      image: "/placeholder.svg?height=200&width=400&text=Team+Meeting",
-                      readTime: "5 min read",
-                    },
-                    {
-                      title: "The First Real Challenge",
-                      date: "March 8-12, 2025",
-                      week: 3,
-                      excerpt: "Tackling my first significant project and the obstacles that came with it.",
-                      image: "/placeholder.svg?height=200&width=400&text=Coding+Challenge",
-                      readTime: "7 min read",
-                    },
-                    {
-                      title: "Finding The Rhythm",
-                      date: "March 1-5, 2025",
-                      week: 2,
-                      excerpt: "As weeks pass, I've found a workable routine and understand the workflow better.",
-                      image: "/placeholder.svg?height=200&width=400&text=Work+Routine",
-                      readTime: "4 min read",
-                    },
-                    {
-                      title: "Stepping Into Workspace",
-                      date: "February 22-26, 2025",
-                      week: 1,
-                      excerpt:
-                        "My first week of OJT filled with new faces, unfamiliar spaces, and exciting challenges.",
-                      image: "/placeholder.svg?height=200&width=400&text=Office+Space",
-                      readTime: "6 min read",
-                    },
-                  ].map((post, i) => (
+                  {recentPosts.map((post, i) => (
                     <Card key={i} className="tech-card overflow-hidden">
                       <div className="flex flex-col md:flex-row">
-                        <div className="md:w-1/3 relative">
+                        <div className="md:w-1/3 relative min-h-[200px] max-h-[200px] h-[200px]">
                           <Image
-                            src={post.image || "/placeholder.svg"}
+                            src={getImagePath(post.src)}
                             alt={post.title}
-                            width={400}
-                            height={200}
-                            className="h-full w-full object-cover"
+                            fill
+                            className="object-cover w-full h-full"
                           />
-                          <div className="absolute top-2 left-2">
-                            <Badge className="bg-purple-600 hover:bg-purple-700">Week {post.week}</Badge>
-                          </div>
                         </div>
-                        <div className="md:w-2/3 p-6 tech-border-left">
-                          <div className="flex items-center text-xs text-gray-400 mb-2 space-x-4">
-                            <span className="flex items-center">
+                        <div className="p-6 md:w-2/3">
+                          <div className="flex items-center space-x-4 mb-3">
+                            <Badge variant="outline" className="border-purple-500/50 text-purple-300">
                               <Calendar className="h-3 w-3 mr-1" />
                               {post.date}
-                            </span>
-                            <span className="flex items-center">
-                              <Clock className="h-3 w-3 mr-1" />
-                              {post.readTime}
-                            </span>
+                            </Badge>
+                            <Badge variant="outline" className="border-purple-500/50 text-purple-300">
+                              {post.week}
+                            </Badge>
                           </div>
                           <h3 className="text-xl font-bold mb-2 hover:text-purple-400 transition-colors">
-                            {post.title}
+                            <Link href={`/blog/${post.slug}`}>{post.title}</Link>
                           </h3>
-                          <p className="text-gray-300 mb-4">{post.excerpt}</p>
-                          <Link href={`/blog/${post.title.toLowerCase().replace(/\s+/g, "-")}`}>
-                            <Button variant="ghost" className="p-0 h-auto hover:text-purple-400 group">
-                              Read Entry{" "}
-                              <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                          <p className="text-gray-400 mb-4">{post.description}</p>
+                          <Link href={`/blog/${post.slug}`}>
+                            <Button variant="ghost" className="text-purple-400 hover:text-purple-300 p-0">
+                              Read Entry
+                              <ArrowRight className="ml-2 h-4 w-4" />
                             </Button>
                           </Link>
                         </div>
@@ -228,16 +207,17 @@ export default function Home() {
                     </Card>
                   ))}
                 </div>
-
-                <Link href="/blog">
-                  <Button className="bg-purple-600 hover:bg-purple-700 tech-button">
-                    View All Weekly Entries
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
+                <div className="mt-8 text-center">
+                  <Link href="/blog">
+                    <Button className="bg-purple-600 hover:bg-purple-700 tech-button">
+                      See All Entries
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
+                </div>
               </section>
 
-              <section>
+              <section id="photo-highlights" className="mb-16">
                 <div className="flex items-center mb-6">
                   <div className="h-4 w-4 bg-purple-600 rounded-sm rotate-45"></div>
                   <h2 className="text-xl font-bold ml-2">PHOTO HIGHLIGHTS</h2>
@@ -278,7 +258,7 @@ export default function Home() {
                 <div className="flex flex-col items-center mb-4">
                   <div className="w-24 h-24 rounded-full overflow-hidden gradient-border mb-4">
                     <Image
-                      src="/placeholder.svg?height=100&width=100&text=Profile"
+                      src="/myPIC.jpg"
                       alt="Profile"
                       width={100}
                       height={100}
@@ -286,16 +266,18 @@ export default function Home() {
                     />
                   </div>
                   <h4 className="text-lg font-bold">John Nebrej N. Rempis</h4>
-                  <p className="text-sm text-gray-400">OJT Developer</p>
+                  <p className="text-sm text-gray-400">DOST Intern</p>
                 </div>
                 <p className="text-sm text-gray-300 mb-4">
                   Documenting my journey through on-the-job training and personal development. I believe in{" "}
                   <span className="text-purple-300 font-medium">the art of productive laziness</span> - working smarter,
                   not harder.
                 </p>
-                <Button variant="outline" className="w-full border-purple-500/50 hover:bg-purple-500/20">
-                  View Full Profile
-                </Button>
+                <Link href="/about">
+                  <Button variant="outline" className="w-full border-purple-500/50 hover:bg-purple-500/20">
+                    View Profile
+                  </Button>
+                </Link>
               </div>
 
               <div className="glass-effect rounded-lg p-6">
@@ -304,41 +286,62 @@ export default function Home() {
                   ROLES I'VE EXPLORED
                 </h3>
                 <div className="space-y-3">
-                  <div className="flex items-center p-2 rounded-md hover:bg-purple-900/20 transition-colors">
-                    <Code className="h-5 w-5 mr-3 text-purple-400" />
-                    <div>
-                      <h4 className="font-medium">Frontend Developer</h4>
-                      <p className="text-xs text-gray-400">Building user interfaces and experiences</p>
-                    </div>
+                <div className="flex items-center p-2 rounded-md hover:bg-purple-900/20 transition-colors">
+                  <Code className="h-5 w-5 mr-3 text-purple-400" />
+                  <div>
+                    <h4 className="font-medium">Frontend Developer</h4>
+                    <p className="text-xs text-gray-400">Building user interfaces and experiences</p>
                   </div>
-                  <div className="flex items-center p-2 rounded-md hover:bg-purple-900/20 transition-colors">
-                    <Palette className="h-5 w-5 mr-3 text-purple-400" />
-                    <div>
-                      <h4 className="font-medium">UI/UX Designer</h4>
-                      <p className="text-xs text-gray-400">Creating intuitive user experiences</p>
-                    </div>
+                </div>
+
+                <div className="flex items-center p-2 rounded-md hover:bg-purple-900/20 transition-colors">
+                  <Palette className="h-5 w-5 mr-3 text-purple-400" />
+                  <div>
+                    <h4 className="font-medium">UI/UX Designer</h4>
+                    <p className="text-xs text-gray-400">Creating intuitive user experiences</p>
                   </div>
-                  <div className="flex items-center p-2 rounded-md hover:bg-purple-900/20 transition-colors">
-                    <BarChart className="h-5 w-5 mr-3 text-purple-400" />
-                    <div>
-                      <h4 className="font-medium">Technical Support</h4>
-                      <p className="text-xs text-gray-400">Assiting in troubleshooting and repairing.</p>
-                    </div>
+                </div>
+
+                <div className="flex items-center p-2 rounded-md hover:bg-purple-900/20 transition-colors">
+                  <LifeBuoy className="h-5 w-5 mr-3 text-purple-400" />
+                  <div>
+                    <h4 className="font-medium">Technical Support</h4>
+                    <p className="text-xs text-gray-400">Performed troubleshooting for system units and printers</p>
                   </div>
-                  <div className="flex items-center p-2 rounded-md hover:bg-purple-900/20 transition-colors">
-                    <Bug className="h-5 w-5 mr-3 text-purple-400" />
-                    <div>
-                      <h4 className="font-medium">QA Tester</h4>
-                      <p className="text-xs text-gray-400">Ensuring quality and finding bugs</p>
-                    </div>
+                </div>
+
+                <div className="flex items-center p-2 rounded-md hover:bg-purple-900/20 transition-colors">
+                  <Cog className="h-5 w-5 mr-3 text-purple-400" />
+                  <div>
+                    <h4 className="font-medium">Technical Assistant</h4>
+                    <p className="text-xs text-gray-400">Assisted in event setups, ensuring smooth flow</p>
                   </div>
-                  <div className="flex items-center p-2 rounded-md hover:bg-purple-900/20 transition-colors">
-                    <Terminal className="h-5 w-5 mr-3 text-purple-400" />
-                    <div>
-                      <h4 className="font-medium">DevOps Engineer</h4>
-                      <p className="text-xs text-gray-400">Streamlining development processes</p>
-                    </div>
+                </div>
+
+                <div className="flex items-center p-2 rounded-md hover:bg-purple-900/20 transition-colors">
+                  <Layers className="h-5 w-5 mr-3 text-purple-400" />
+                  <div>
+                    <h4 className="font-medium">Layout Designer</h4>
+                    <p className="text-xs text-gray-400">Redesigning outdated brochures</p>
                   </div>
+                </div>
+
+                <div className="flex items-center p-2 rounded-md hover:bg-purple-900/20 transition-colors">
+                  <Wrench className="h-5 w-5 mr-3 text-purple-400" />
+                  <div>
+                    <h4 className="font-medium">Hardware & System Maintenance</h4>
+                    <p className="text-xs text-gray-400">Maintained device performance and reliability</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center p-2 rounded-md hover:bg-purple-900/20 transition-colors">
+                  <Wifi className="h-5 w-5 mr-3 text-purple-400" />
+                  <div>
+                    <h4 className="font-medium">Network Support</h4>
+                    <p className="text-xs text-gray-400">Performed basic network setup and troubleshooting</p>
+                  </div>
+                </div>
+
                 </div>
               </div>
 

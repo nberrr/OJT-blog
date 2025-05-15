@@ -69,79 +69,77 @@ export default function AboutPage() {
               </p>
               <div className="glass-effect p-6 rounded-lg mb-6">
                 <p className="text-gray-300 mb-4">
-                  Hello! I'm John Nebrej N. Rempis, the author behind "The Art of Productive Laziness." This blog serves
-                  as my personal journal during my On-the-Job Training experience, documenting my weekly journey,
-                  challenges, and growth.
+                Hello! I'm John Nebrej N. Rempis, the author behind "The Art of Productive Laziness." 
+                This blog serves as my personal journal during my On-the-Job Training (OJT) experience,
+                documenting my weekly journey, the challenges I faced, the lessons I learned, and the personal growth 
+                I’ve achieved throughout the process.
                 </p>
                 <p className="text-gray-300 mb-4">
-                  I'm currently pursuing my degree in Computer Science at Metro Manila University. My OJT placement at
-                  TechFusion Inc. has been an incredible opportunity to apply classroom knowledge to real-world
-                  scenarios and develop professional skills that will shape my future career.
+                I'm currently pursuing a degree in Information Technology at Bicol University College of Science.
+                My OJT experience was truly memorable and fulfilling. I had the incredible opportunity to work with the
+                dedicated staff of the DOST MIS and the S&T Promotions team. Their support and guidance played a big role
+                in helping me understand how IT systems are applied in real-world environments.
                 </p>
                 <p className="text-gray-300 mb-4">
-                  The title "The Art of Productive Laziness" reflects my philosophy that efficiency isn't about working
-                  harder, but working smarter. Throughout my OJT experience, I've been learning how to prioritize tasks,
-                  streamline processes, and achieve maximum results with optimal effort.
+                The title "The Art of Productive Laziness" reflects my belief that true productivity is not about 
+                constantly working, but about working smart. During my internship, I explored ways to improve efficiency,
+                simplify tasks, and contribute meaningfully while managing my time and energy effectively.
                 </p>
                 <p className="text-gray-300">
-                  This blog serves dual purposes: it fulfills my educational requirements for OJT documentation, and it
-                  allows me to reflect deeply on my experiences, extracting valuable lessons that will guide my
-                  professional development.
+                This blog serves dual purposes: it fulfills my academic requirement for OJT documentation, and it 
+                allows me to reflect on every meaningful moment of this journey. I hope that by sharing my story,
+                I can inspire other students to embrace their internships not just as a requirement, but as a valuable
+                opportunity to grow personally and professionally.
                 </p>
               </div>
               <p className="text-gray-300 italic">
-                When I'm not at my internship or studying, you'll find me coding personal projects, playing basketball,
-                and always looking for ways to balance productivity with well-deserved rest.
+              When I’m not at my internship or studying, you’ll find me working on personal coding projects, 
+              playing basketball, palying games, or simply enjoying a well-earned break — all in the
+              pursuit of balance between productivity and rest.
               </p>
-              <div className="flex flex-wrap gap-4 mt-6">
-                <Button variant="outline" className="border-purple-500/50 hover:bg-purple-500/20">
-                  Read My Journal
-                </Button>
-              </div>
             </div>
             <div>
               <div className="glass-effect rounded-lg overflow-hidden gradient-border">
-                <div className="relative aspect-square">
+                <div className="relative w-full aspect-[3/4] bg-[#0a0118]">
                   <Image
-                    src="/placeholder.svg?height=400&width=400&text=Profile"
+                    src="/internID.png"
                     alt="John Nebrej N. Rempis"
-                    width={400}
-                    height={400}
-                    className="object-cover w-full h-full"
+                    fill
+                    className="object-contain w-full h-full"
                   />
                 </div>
                 <div className="p-6 space-y-4">
                   <h3 className="text-xl font-bold">OJT Details</h3>
                   <div className="space-y-3">
-                    <div className="flex items-center">
+                    <div className="flex items-center justify-center">
                       <Badge className="bg-purple-600/20 text-purple-300 border border-purple-500/30 mr-2">
                         Company
                       </Badge>
-                      <span>TechFusion Inc.</span>
+                      <span>Department of Science and Technology</span>
                     </div>
                     <div className="flex items-center">
                       <Badge className="bg-purple-600/20 text-purple-300 border border-purple-500/30 mr-2">
                         Position
                       </Badge>
-                      <span>Junior Web Developer</span>
+                      <span>Front-end Developer</span>
                     </div>
                     <div className="flex items-center">
                       <Badge className="bg-purple-600/20 text-purple-300 border border-purple-500/30 mr-2">
                         Duration
                       </Badge>
-                      <span>April - June 2025</span>
+                      <span>February 24, 2025 - June 6 , 2025</span>
                     </div>
                     <div className="flex items-center">
                       <Badge className="bg-purple-600/20 text-purple-300 border border-purple-500/30 mr-2">
                         University
                       </Badge>
-                      <span>Metro Manila University</span>
+                      <span>Bicol University - College of Science</span>
                     </div>
                     <div className="flex items-center">
                       <Badge className="bg-purple-600/20 text-purple-300 border border-purple-500/30 mr-2">
                         Program
                       </Badge>
-                      <span>Computer Science</span>
+                      <span>Information Technology</span>
                     </div>
                   </div>
                 </div>
@@ -264,8 +262,8 @@ export default function AboutPage() {
                   <Mail className="h-5 w-5 text-purple-400 mr-3" />
                   <div>
                     <p className="text-sm text-gray-400">Email:</p>
-                    <a href="mailto:john.rempis@example.com" className="hover:text-purple-400 transition-colors">
-                      john.rempis@example.com
+                    <a href="mailto:benj.nebrej@gmail.com" className="hover:text-purple-400 transition-colors">
+                      benj.nebrej@gmail.com
                     </a>
                   </div>
                 </div>
@@ -273,8 +271,8 @@ export default function AboutPage() {
                   <Linkedin className="h-5 w-5 text-purple-400 mr-3" />
                   <div>
                     <p className="text-sm text-gray-400">LinkedIn:</p>
-                    <a href="https://linkedin.com/in/johnrempis" className="hover:text-purple-400 transition-colors">
-                      linkedin.com/in/johnrempis
+                    <a href="https://www.linkedin.com/in/john-nebrej-rempis-504962355/" className="hover:text-purple-400 transition-colors">
+                      linkedin.com/in/johnnebrejrempis
                     </a>
                   </div>
                 </div>
@@ -282,16 +280,9 @@ export default function AboutPage() {
                   <GraduationCap className="h-5 w-5 text-purple-400 mr-3" />
                   <div>
                     <p className="text-sm text-gray-400">University Email:</p>
-                    <a href="mailto:j.rempis@university.edu" className="hover:text-purple-400 transition-colors">
-                      j.rempis@university.edu
+                    <a href="johnnebrejnieves.rempis@bicol-u.edu.ph" className="hover:text-purple-400 transition-colors">
+                    johnnebrejnieves.rempis@bicol-u.edu.ph
                     </a>
-                  </div>
-                </div>
-                <div className="flex items-center">
-                  <Building className="h-5 w-5 text-purple-400 mr-3" />
-                  <div>
-                    <p className="text-sm text-gray-400">Company:</p>
-                    <p>TechFusion Inc.</p>
                   </div>
                 </div>
               </div>
@@ -351,82 +342,12 @@ export default function AboutPage() {
                     strokeLinejoin="round"
                     className="text-purple-400"
                   >
-                    <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
-                  </svg>
-                </a>
-                <a
-                  href="#"
-                  className="h-8 w-8 rounded-full bg-[#150a30] flex items-center justify-center hover:bg-purple-900/50 transition-colors"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="text-purple-400"
-                  >
                     <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                     <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
                     <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
                   </svg>
                 </a>
               </div>
-            </div>
-            <div>
-              <h3 className="text-lg font-bold mb-4">Quick Links</h3>
-              <ul className="space-y-2">
-                <li>
-                  <Link href="/" className="text-gray-400 hover:text-purple-400 transition-colors flex items-center">
-                    <ArrowRight className="h-3 w-3 mr-1" /> Home
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/blog"
-                    className="text-gray-400 hover:text-purple-400 transition-colors flex items-center"
-                  >
-                    <ArrowRight className="h-3 w-3 mr-1" /> Blog
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/about" className="text-purple-400 transition-colors flex items-center">
-                    <ArrowRight className="h-3 w-3 mr-1" /> About
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/contact"
-                    className="text-gray-400 hover:text-purple-400 transition-colors flex items-center"
-                  >
-                    <ArrowRight className="h-3 w-3 mr-1" /> Contact
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg font-bold mb-4">Archives</h3>
-              <ul className="space-y-2">
-                <li>
-                  <Link href="#" className="text-gray-400 hover:text-purple-400 transition-colors flex items-center">
-                    <ArrowRight className="h-3 w-3 mr-1" /> March 2025
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="text-gray-400 hover:text-purple-400 transition-colors flex items-center">
-                    <ArrowRight className="h-3 w-3 mr-1" /> February 2025
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="text-gray-400 hover:text-purple-400 transition-colors flex items-center">
-                    <ArrowRight className="h-3 w-3 mr-1" /> January 2025
-                  </Link>
-                </li>
-              </ul>
             </div>
           </div>
           <div className="tech-line w-full my-8"></div>

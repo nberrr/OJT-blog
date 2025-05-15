@@ -4,8 +4,11 @@ import { ArrowRight, Calendar, ChevronLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card } from "@/components/ui/card"
+import { getAllBlogPosts, getImagePath } from "@/lib/utils"
 
 export default function BlogPage() {
+  const posts = getAllBlogPosts();
+
   return (
     <div className="min-h-screen bg-[#0a0118] text-white">
       <div className="fixed inset-0 z-0 pointer-events-none">
@@ -58,87 +61,36 @@ export default function BlogPage() {
 
           {/* Blog Grid */}
           <div className="grid md:grid-cols-2 gap-8">
-            {[
-              {
-                title: "Week 1: Introduction to the Workplace",
-                date: "February 24-28, 2025",
-                week: 1,
-                excerpt: "My first week of OJT was an exciting journey into the professional world. I learned about the company's culture, met my team members, and started understanding the development workflow.",
-                image: "/uploads/week1/cover.jpeg",
-                slug: "week-1-introduction"
-              },
-              {
-                title: "Week 2: Diving into Development",
-                date: "March 3-7, 2025",
-                week: 2,
-                excerpt: "This week focused on getting hands-on with development tasks. I started working on small features and learned about the codebase structure and development practices.",
-                image: "/uploads/week2/cover.jpg",
-                slug: "week-2-development"
-              },
-              {
-                title: "Week 3: First Project Challenge",
-                date: "March 10-14, 2025",
-                week: 3,
-                excerpt: "Took on my first significant project this week. Learned about project planning, task management, and the importance of clear communication in development.",
-                image: "/uploads/week3/cover.jpg",
-                slug: "week-3-first-project"
-              },
-              {
-                title: "Week 4: Team Collaboration",
-                date: "March 17-21, 2025",
-                week: 4,
-                excerpt: "Focused on improving team collaboration and communication. Participated in code reviews and learned from senior developers' feedback.",
-                image: "/uploads/week4/cover.jpg",
-                slug: "week-4-collaboration"
-              },
-              {
-                title: "Week 5: Women's Month Special",
-                date: "March 24-28, 2025",
-                week: 5,
-                excerpt: "Celebrated Women's Month while continuing our development work. Participated in special events and discussions about diversity in tech.",
-                image: "/uploads/week5/cover.jpg",
-                slug: "week-5-womens-month"
-              },
-              {
-                title: "Week 6: New Technologies",
-                date: "March 31 - April 4, 2025",
-                week: 6,
-                excerpt: "Explored new technologies and frameworks. Started implementing modern development practices and tools in our projects.",
-                image: "/uploads/week6/cover.jpg",
-                slug: "week-6-new-tech"
-              },
-            ].map((post) => (
-              <Card key={post.week} className="tech-card overflow-hidden gradient-border">
-                <div className="relative">
-                  <div className="absolute top-0 left-0 bg-purple-600 text-white px-3 py-1 text-sm font-bold z-20">
-                    Week {post.week}
-                  </div>
+            {posts.map((post) => (
+              <Card key={post.slug} className="overflow-hidden rounded-2xl shadow-lg border-0 bg-transparent">
+                <div className="relative aspect-[4/3] w-full">
                   <Image
-                    src={post.image}
+                    src={getImagePath(post.src)}
                     alt={post.title}
-                    width={600}
-                    height={400}
-                    className="w-full h-[240px] object-cover"
+                    fill
+                    className="object-cover w-full h-full"
+                    style={{ objectPosition: 'center' }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0118] via-[#0a0118]/70 to-transparent"></div>
-                </div>
-                <div className="p-6">
-                  <h2 className="text-2xl font-bold mb-2 hover:text-purple-400 transition-colors">{post.title}</h2>
-                  <div className="flex items-center text-sm text-gray-400 mb-4">
-                    <Calendar className="h-4 w-4 mr-1" />
-                    <span>{post.date}</span>
+                  <div className="absolute top-0 left-0 bg-purple-600/70 text-white px-3 py-1 text-sm font-bold z-20 shadow-md rounded-br-lg">
+                    {post.week}
                   </div>
-                  <p className="text-gray-300 mb-6">{post.excerpt}</p>
-                  <div className="flex justify-between items-center">
-                    <Badge variant="outline" className="border-purple-500/50 text-purple-300">
-                      Week {post.week}
-                    </Badge>
-                    <Link href={`/blog/${post.slug}`}>
-                      <Button variant="ghost" className="p-0 h-auto hover:text-purple-400 group">
-                        Read Entry{" "}
-                        <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                      </Button>
-                    </Link>
+                  <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/90 via-black/60 to-transparent">
+                    <h2 className="text-2xl font-bold mb-2 text-white drop-shadow-lg">{post.title}</h2>
+                    <div className="flex items-center text-sm text-gray-200 mb-2">
+                      <Calendar className="h-4 w-4 mr-1" />
+                      <span>{post.date}</span>
+                    </div>
+                    <p className="text-gray-200 mb-4 line-clamp-2">{post.description}</p>
+                    <div className="flex justify-between items-center">
+                      <Badge variant="outline" className="border-purple-300/50 text-purple-200 bg-purple-900/40">
+                        {post.week}
+                      </Badge>
+                      <Link href={`/blog/${post.slug}`}>
+                        <Button variant="ghost" className="p-0 h-auto text-white hover:text-purple-300 group">
+                          Read Entry <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                        </Button>
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </Card>
