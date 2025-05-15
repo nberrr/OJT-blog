@@ -100,9 +100,9 @@ export default function Home() {
                     </Button>
                     </Link>
                     <Link href="#photo-highlights" scroll={true}>
-                      <Button variant="outline" className="border-purple-500/50 hover:bg-purple-500/20">
+                    <Button variant="outline" className="border-purple-500/50 hover:bg-purple-500/20">
                         View OJT Highlights
-                      </Button>
+                    </Button>
                     </Link>
                   </div>
                 </div>
@@ -282,12 +282,12 @@ export default function Home() {
                   ))}
                 </div>
                 <div className="mt-8 text-center">
-                  <Link href="/blog">
-                    <Button className="bg-purple-600 hover:bg-purple-700 tech-button">
+                <Link href="/blog">
+                  <Button className="bg-purple-600 hover:bg-purple-700 tech-button">
                       See All Entries
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </Link>
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
                 </div>
               </section>
 
@@ -348,9 +348,9 @@ export default function Home() {
                   not harder.
                 </p>
                 <Link href="/about">
-                  <Button variant="outline" className="w-full border-purple-500/50 hover:bg-purple-500/20">
+                <Button variant="outline" className="w-full border-purple-500/50 hover:bg-purple-500/20">
                     View Profile
-                  </Button>
+                </Button>
                 </Link>
               </div>
 
@@ -360,29 +360,29 @@ export default function Home() {
                   ROLES I'VE EXPLORED
                 </h3>
                 <div className="space-y-3">
-                <div className="flex items-center p-2 rounded-md hover:bg-purple-900/20 transition-colors">
-                  <Code className="h-5 w-5 mr-3 text-purple-400" />
-                  <div>
-                    <h4 className="font-medium">Frontend Developer</h4>
-                    <p className="text-xs text-gray-400">Building user interfaces and experiences</p>
+                  <div className="flex items-center p-2 rounded-md hover:bg-purple-900/20 transition-colors">
+                    <Code className="h-5 w-5 mr-3 text-purple-400" />
+                    <div>
+                      <h4 className="font-medium">Frontend Developer</h4>
+                      <p className="text-xs text-gray-400">Building user interfaces and experiences</p>
+                    </div>
                   </div>
-                </div>
 
-                <div className="flex items-center p-2 rounded-md hover:bg-purple-900/20 transition-colors">
-                  <Palette className="h-5 w-5 mr-3 text-purple-400" />
-                  <div>
-                    <h4 className="font-medium">UI/UX Designer</h4>
-                    <p className="text-xs text-gray-400">Creating intuitive user experiences</p>
+                  <div className="flex items-center p-2 rounded-md hover:bg-purple-900/20 transition-colors">
+                    <Palette className="h-5 w-5 mr-3 text-purple-400" />
+                    <div>
+                      <h4 className="font-medium">UI/UX Designer</h4>
+                      <p className="text-xs text-gray-400">Creating intuitive user experiences</p>
+                    </div>
                   </div>
-                </div>
 
-                <div className="flex items-center p-2 rounded-md hover:bg-purple-900/20 transition-colors">
+                  <div className="flex items-center p-2 rounded-md hover:bg-purple-900/20 transition-colors">
                   <LifeBuoy className="h-5 w-5 mr-3 text-purple-400" />
-                  <div>
-                    <h4 className="font-medium">Technical Support</h4>
+                    <div>
+                      <h4 className="font-medium">Technical Support</h4>
                     <p className="text-xs text-gray-400">Performed troubleshooting for system units and printers</p>
                   </div>
-                </div>
+                    </div>
 
                 <div className="flex items-center p-2 rounded-md hover:bg-purple-900/20 transition-colors">
                   <Cog className="h-5 w-5 mr-3 text-purple-400" />
@@ -392,13 +392,13 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="flex items-center p-2 rounded-md hover:bg-purple-900/20 transition-colors">
+                  <div className="flex items-center p-2 rounded-md hover:bg-purple-900/20 transition-colors">
                   <Layers className="h-5 w-5 mr-3 text-purple-400" />
-                  <div>
+                    <div>
                     <h4 className="font-medium">Layout Designer</h4>
                     <p className="text-xs text-gray-400">Redesigning outdated brochures</p>
                   </div>
-                </div>
+                    </div>
 
                 <div className="flex items-center p-2 rounded-md hover:bg-purple-900/20 transition-colors">
                   <Wrench className="h-5 w-5 mr-3 text-purple-400" />
@@ -408,9 +408,9 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="flex items-center p-2 rounded-md hover:bg-purple-900/20 transition-colors">
+                  <div className="flex items-center p-2 rounded-md hover:bg-purple-900/20 transition-colors">
                   <Wifi className="h-5 w-5 mr-3 text-purple-400" />
-                  <div>
+                    <div>
                     <h4 className="font-medium">Network Support</h4>
                     <p className="text-xs text-gray-400">Performed basic network setup and troubleshooting</p>
                   </div>

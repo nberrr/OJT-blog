@@ -2,14 +2,23 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, Calendar, ChevronLeft, ArrowLeft } from "lucide-react"
+import { ArrowRight, Calendar, Tag, ArrowLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card } from "@/components/ui/card"
 import { getAllBlogPosts, getImagePath } from "@/lib/utils"
 import { useRef } from "react"
 
-export default function BlogPage() {
+interface BlogPost {
+  slug: string;
+  title: string;
+  date: string;
+  week: string;
+  description: string;
+  src: string;
+}
+
+export default function Blog() {
   const posts = getAllBlogPosts();
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -56,20 +65,12 @@ export default function BlogPage() {
         <div className="tech-line w-full"></div>
       </header>
 
-      <main className="relative z-10 py-12">
-        <div className="container mx-auto px-4 md:px-6">
-          {/* Page Header */}
-          <div className="mb-12">
-            <div className="flex items-center mb-4">
-              <Link href="/" className="text-purple-400 hover:text-purple-300 flex items-center mr-4">
-                <ChevronLeft className="h-4 w-4 mr-1" />
-                Back to Home
-              </Link>
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 animated-gradient-text">My OJT Weekly Journal</h1>
-            <p className="text-xl text-gray-300 max-w-3xl">
-              A chronological record of my on-the-job training experience
-            </p>
+      <main className="relative z-10">
+        <div className="container mx-auto px-4 md:px-6 py-8">
+          <div className="flex items-center mb-6">
+            <div className="h-4 w-4 bg-purple-600 rounded-sm rotate-45"></div>
+            <h1 className="text-2xl font-bold ml-2">ALL ENTRIES</h1>
+            <div className="tech-line flex-grow ml-4"></div>
           </div>
 
           {/* Mobile: Horizontal scroll with arrows */}
@@ -85,37 +86,38 @@ export default function BlogPage() {
               ref={scrollRef}
               className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 hide-scrollbar"
             >
-              {posts.map((post) => (
-                <div key={post.slug} className="min-w-[320px] max-w-xs snap-center transition-transform duration-300">
-                  <Card className="overflow-hidden rounded-2xl shadow-lg border-0 bg-transparent">
-                    <div className="relative aspect-[4/3] w-full">
-                      <Image
-                        src={getImagePath(post.src)}
-                        alt={post.title}
-                        fill
-                        className="object-cover w-full h-full"
-                        style={{ objectPosition: 'center' }}
-                      />
-                      <div className="absolute top-0 left-0 bg-purple-600/70 text-white px-2 py-1 text-xs md:px-3 md:py-1.5 md:text-sm font-bold z-20 shadow-md rounded-br-lg">
-                        {post.week}
+              {posts.map((post: BlogPost, i: number) => (
+                <div key={i} className="min-w-[320px] max-w-xs snap-center transition-transform duration-300">
+                  <Card className="tech-card overflow-hidden">
+                    <div className="flex flex-col md:flex-row">
+                      <div className="md:w-1/3 relative min-h-[200px] max-h-[200px] h-[200px]">
+                        <Image
+                          src={getImagePath(post.src)}
+                          alt={post.title}
+                          fill
+                          className="object-cover w-full h-full"
+                        />
                       </div>
-                      <div className="absolute bottom-0 left-0 w-full p-3 md:p-6 bg-gradient-to-t from-black/90 via-black/60 to-transparent">
-                        <h2 className="text-lg md:text-2xl font-bold mb-1 md:mb-2 text-white drop-shadow-lg line-clamp-2">{post.title}</h2>
-                        <div className="flex items-center text-xs md:text-sm text-gray-200 mb-1 md:mb-2">
-                          <Calendar className="h-3 w-3 md:h-4 md:w-4 mr-1" />
-                          <span>{post.date}</span>
-                        </div>
-                        <p className="text-gray-200 text-xs md:text-base mb-2 md:mb-4 line-clamp-2">{post.description}</p>
-                        <div className="flex justify-between items-center">
-                          <Badge variant="outline" className="border-purple-300/50 text-purple-200 bg-purple-900/40 text-xs md:text-sm px-2 py-0.5 md:px-3 md:py-1">
+                      <div className="p-6 md:w-2/3">
+                        <div className="flex items-center space-x-4 mb-3">
+                          <Badge variant="outline" className="border-purple-500/50 text-purple-300">
+                            <Calendar className="h-3 w-3 mr-1" />
+                            {post.date}
+                          </Badge>
+                          <Badge variant="outline" className="border-purple-500/50 text-purple-300">
                             {post.week}
                           </Badge>
-                          <Link href={`/blog/${post.slug}`}>
-                            <Button variant="ghost" className="p-0 h-auto text-white hover:text-purple-300 group text-xs md:text-base">
-                              Read Entry <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                            </Button>
-                          </Link>
                         </div>
+                        <h3 className="text-xl font-bold mb-2 hover:text-purple-400 transition-colors">
+                          <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+                        </h3>
+                        <p className="text-gray-400 mb-4">{post.description}</p>
+                        <Link href={`/blog/${post.slug}`}>
+                          <Button variant="ghost" className="text-purple-400 hover:text-purple-300 p-0">
+                            Read Entry
+                            <ArrowRight className="ml-2 h-4 w-4" />
+                          </Button>
+                        </Link>
                       </div>
                     </div>
                   </Card>
@@ -132,34 +134,38 @@ export default function BlogPage() {
           </div>
 
           {/* Desktop: Grid as usual */}
-          <div className="hidden md:grid sm:grid-cols-2 gap-8">
-            {posts.map((post) => (
-              <Card key={post.slug} className="overflow-hidden rounded-2xl shadow-lg border-0 bg-transparent">
-                <div className="relative aspect-[4/3] w-full">
-                  <Image
-                    src={getImagePath(post.src)}
-                    alt={post.title}
-                    fill
-                    className="object-cover w-full h-full"
-                    style={{ objectPosition: 'center' }}
-                  />
-                  <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/90 via-black/60 to-transparent">
-                    <h2 className="text-2xl font-bold mb-2 text-white drop-shadow-lg">{post.title}</h2>
-                    <div className="flex items-center text-sm text-gray-200 mb-2">
-                      <Calendar className="h-4 w-4 mr-1" />
-                      <span>{post.date}</span>
-                    </div>
-                    <p className="text-gray-200 mb-4 line-clamp-2">{post.description}</p>
-                    <div className="flex justify-between items-center">
-                      <Badge variant="outline" className="border-purple-300/50 text-purple-200 bg-purple-900/40">
+          <div className="hidden md:grid gap-6">
+            {posts.map((post: BlogPost, i: number) => (
+              <Card key={i} className="tech-card overflow-hidden">
+                <div className="flex flex-col md:flex-row">
+                  <div className="md:w-1/3 relative min-h-[200px] max-h-[200px] h-[200px]">
+                    <Image
+                      src={getImagePath(post.src)}
+                      alt={post.title}
+                      fill
+                      className="object-cover w-full h-full"
+                    />
+                  </div>
+                  <div className="p-6 md:w-2/3">
+                    <div className="flex items-center space-x-4 mb-3">
+                      <Badge variant="outline" className="border-purple-500/50 text-purple-300">
+                        <Calendar className="h-3 w-3 mr-1" />
+                        {post.date}
+                      </Badge>
+                      <Badge variant="outline" className="border-purple-500/50 text-purple-300">
                         {post.week}
                       </Badge>
-                      <Link href={`/blog/${post.slug}`}>
-                        <Button variant="ghost" className="p-0 h-auto text-white hover:text-purple-300 group">
-                          Read Entry <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                        </Button>
-                      </Link>
                     </div>
+                    <h3 className="text-xl font-bold mb-2 hover:text-purple-400 transition-colors">
+                      <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+                    </h3>
+                    <p className="text-gray-400 mb-4">{post.description}</p>
+                    <Link href={`/blog/${post.slug}`}>
+                      <Button variant="ghost" className="text-purple-400 hover:text-purple-300 p-0">
+                        Read Entry
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </Card>
@@ -171,133 +177,6 @@ export default function BlogPage() {
       <footer className="relative z-10 mt-16">
         <div className="tech-line w-full mb-8"></div>
         <div className="container mx-auto px-4 md:px-6 pb-8">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div className="md:col-span-2">
-              <Link
-                href="/"
-                className="text-xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500 mb-4 inline-block"
-              >
-                nberrr<span className="text-purple-400">_</span>
-              </Link>
-              <p className="text-gray-400 mb-4 max-w-md">
-                A personal journey through my OJT experience. Documenting weekly insights, challenges, and growth as I
-                navigate the professional world.
-              </p>
-              <div className="flex space-x-4">
-                <a
-                  href="#"
-                  className="h-8 w-8 rounded-full bg-[#150a30] flex items-center justify-center hover:bg-purple-900/50 transition-colors"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="text-purple-400"
-                  >
-                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                  </svg>
-                </a>
-                <a
-                  href="#"
-                  className="h-8 w-8 rounded-full bg-[#150a30] flex items-center justify-center hover:bg-purple-900/50 transition-colors"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="text-purple-400"
-                  >
-                    <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
-                  </svg>
-                </a>
-                <a
-                  href="#"
-                  className="h-8 w-8 rounded-full bg-[#150a30] flex items-center justify-center hover:bg-purple-900/50 transition-colors"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="text-purple-400"
-                  >
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                  </svg>
-                </a>
-              </div>
-            </div>
-            <div>
-              <h3 className="text-lg font-bold mb-4">Quick Links</h3>
-              <ul className="space-y-2">
-                <li>
-                  <Link href="/" className="text-gray-400 hover:text-purple-400 transition-colors flex items-center">
-                    <ArrowRight className="h-3 w-3 mr-1" /> Home
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/blog" className="text-purple-400 transition-colors flex items-center">
-                    <ArrowRight className="h-3 w-3 mr-1" /> Blog
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/about"
-                    className="text-gray-400 hover:text-purple-400 transition-colors flex items-center"
-                  >
-                    <ArrowRight className="h-3 w-3 mr-1" /> About
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/contact"
-                    className="text-gray-400 hover:text-purple-400 transition-colors flex items-center"
-                  >
-                    <ArrowRight className="h-3 w-3 mr-1" /> Contact
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg font-bold mb-4">Archives</h3>
-              <ul className="space-y-2">
-                <li>
-                  <Link href="#" className="text-gray-400 hover:text-purple-400 transition-colors flex items-center">
-                    <ArrowRight className="h-3 w-3 mr-1" /> March 2025
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="text-gray-400 hover:text-purple-400 transition-colors flex items-center">
-                    <ArrowRight className="h-3 w-3 mr-1" /> February 2025
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="text-gray-400 hover:text-purple-400 transition-colors flex items-center">
-                    <ArrowRight className="h-3 w-3 mr-1" /> January 2025
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="tech-line w-full my-8"></div>
           <div className="text-center">
             <p className="text-gray-400">© 2025 nberrr. All rights reserved.</p>
             <p className="text-sm text-gray-500 mt-2">
