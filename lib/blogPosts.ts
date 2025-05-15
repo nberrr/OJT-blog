@@ -241,5 +241,36 @@ export const blogPosts: BlogPosts = {
       <p>This week emphasized collaboration and communication. Coordinating with different teams, from admin to event planners, showed how each role supports the larger goal. It was rewarding to see how our combined efforts would contribute to a successful summit.</p>
       <p>Through these experiences, I deepened my problem-solving skills and learned the importance of being prepared for unexpected challenges. This week reinforced that solid preparation behind the scenes is what truly makes big events successful.</p>
     `
+  },
+  "week-10": {
+    slug: "week-10",
+    title: "Innovation Summit on Full Blast",
+    date: "April 27 - May 2, 2025",
+    author: "John Nebrej N. Rempis",
+    week: "Week 10",
+    src: "/uploads/week10/cover.jpg",
+    images: [
+      "/uploads/week10/gallery/pic1.jpg",
+      "/uploads/week10/gallery/pic2.jpg",
+      "/uploads/week10/gallery/pic3.jpg",
+      "/uploads/week10/gallery/pic4.jpg",
+      "/uploads/week10/gallery/pic5.jpg",
+      "/uploads/week10/gallery/pic6.jpg",
+      "/uploads/week10/gallery/pic7.jpg",
+      "/uploads/week10/gallery/pic8.jpg",
+      "/uploads/week10/gallery/pic9.jpg",
+    ],
+    description: "An immersive event experience handling tech support, coordination, and event management at the Innovation Summit South Luzon 2025.",
+    content: `
+      <p>This week centered around the highly anticipated Innovation Summit South Luzon held at Pepperland Hotel, Legazpi. We participated in the full event cycle — from ingress and setup to technical standby and post-event reflections — witnessing firsthand how major events are executed with precision, teamwork, and adaptability.</p>
+      <h2>From Set-Up to Success: Behind the Innovation Summit</h2>
+      <p>The excitement for the Innovation Summit South Luzon started early — literally. We reported for overtime on Sunday to help with ingress and prepare the venue at Pepperland Hotel, assisting in transporting equipment and materials from DOST and familiarizing ourselves with the entire layout.</p>
+      <p>I was assigned as a technical standby support. Before the summit officially began, we toured the event areas to understand where simultaneous activities would take place. This helped us be prepared for any issues that could arise during the event proper.</p>
+      <p>Day 1 was an intense but rewarding start. We arrived very early to help set up before the arrival of high-profile guests from across South Luzon, including DOST regional directors, agency heads, and walk-in participants. The day included simultaneous events — the Opening Ceremony, media interviews, and breakout activities happening on other floors. We remained alert and ready, resolving technical issues as they came.</p>
+      <p>Day 2 continued the momentum with the same level of energy and professionalism. The consistency in support, coordination, and presence helped make the summit a complete success.</p>
+      <p>Our experience was made more meaningful thanks to the guidance and support from the MIS and S&T Promotions team, especially Ma’am Sheen, who always looked out for us despite the hectic schedule. Her leadership made us feel seen and appreciated.</p>
+      <p>Back at the office, we gathered for a post-event debrief where DOST expressed their gratitude for our contributions. Hearing that our efforts made a real difference in the event’s success was incredibly fulfilling.</p>
+      <p>This week was an unforgettable highlight of our OJT — a chance to apply our technical skills in a high-stakes environment and grow through real-world teamwork. </p>
+    `
   }
 }; 

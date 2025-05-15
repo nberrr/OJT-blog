@@ -314,7 +314,7 @@ export default function Home() {
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-[#0e0225] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
                           <h3 className="text-white font-bold text-lg">{theme} Moment</h3>
-                          <p className="text-purple-300 text-sm">Week {Math.floor(Math.random() * 5) + 1}</p>
+                          <p className="text-purple-300 text-sm">Week {themes.indexOf(theme) + 1}</p>
                         </div>
                       </div>
                     )

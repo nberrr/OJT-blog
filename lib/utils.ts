@@ -37,15 +37,14 @@ export function getImagePath(path: string): string {
   return `${path}.jpg`;
 }
 
-// Get featured blog post (most recent)
+// Get featured blog post (Week 10)
 export function getFeaturedPost(): BlogPost {
-  const posts = getAllBlogPosts();
-  return posts[0];
+  return blogPosts["week-10"];
 }
 
 // Get recent blog posts (excluding featured)
 export function getRecentPosts(count: number = 3): BlogPost[] {
   const posts = getAllBlogPosts();
-  // Remove the first (featured) post and get the next 'count' posts
-  return posts.slice(1, count + 1);
+  // Get the most recent posts, excluding Week 10
+  return posts.filter(post => post.slug !== "week-10").slice(0, count);
 }
