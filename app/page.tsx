@@ -201,7 +201,7 @@ export default function Home() {
                       <div key={i} className="min-w-[320px] max-w-xs snap-center transition-transform duration-300">
                         <Card className="tech-card overflow-hidden">
                           <div className="flex flex-col md:flex-row">
-                            <div className="md:w-1/3 relative min-h-[200px] max-h-[200px] h-[200px]">
+                            <div className="w-full md:w-1/3 relative aspect-[16/9]">
                               <Image
                                 src={getImagePath(post.src)}
                                 alt={post.title}
@@ -248,7 +248,7 @@ export default function Home() {
                   {recentPosts.map((post, i) => (
                     <Card key={i} className="tech-card overflow-hidden">
                       <div className="flex flex-col md:flex-row">
-                        <div className="md:w-1/3 relative min-h-[200px] max-h-[200px] h-[200px]">
+                        <div className="w-full md:w-1/3 relative aspect-[16/9]">
                           <Image
                             src={getImagePath(post.src)}
                             alt={post.title}
@@ -516,60 +516,6 @@ export default function Home() {
                   </svg>
                 </a>
               </div>
-            </div>
-            <div>
-              <h3 className="text-lg font-bold mb-4">Quick Links</h3>
-              <ul className="space-y-2">
-                <li>
-                  <Link href="/" className="text-purple-400 transition-colors flex items-center">
-                    <ArrowRight className="h-3 w-3 mr-1" /> Home
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/blog"
-                    className="text-gray-400 hover:text-purple-400 transition-colors flex items-center"
-                  >
-                    <ArrowRight className="h-3 w-3 mr-1" /> Blog
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/about"
-                    className="text-gray-400 hover:text-purple-400 transition-colors flex items-center"
-                  >
-                    <ArrowRight className="h-3 w-3 mr-1" /> About
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/contact"
-                    className="text-gray-400 hover:text-purple-400 transition-colors flex items-center"
-                  >
-                    <ArrowRight className="h-3 w-3 mr-1" /> Contact
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg font-bold mb-4">Archives</h3>
-              <ul className="space-y-2">
-                <li>
-                  <Link href="#" className="text-gray-400 hover:text-purple-400 transition-colors flex items-center">
-                    <ArrowRight className="h-3 w-3 mr-1" /> March 2025
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="text-gray-400 hover:text-purple-400 transition-colors flex items-center">
-                    <ArrowRight className="h-3 w-3 mr-1" /> February 2025
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="text-gray-400 hover:text-purple-400 transition-colors flex items-center">
-                    <ArrowRight className="h-3 w-3 mr-1" /> January 2025
-                  </Link>
-                </li>
-              </ul>
             </div>
           </div>
           <div className="tech-line w-full my-8"></div>

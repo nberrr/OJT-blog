@@ -90,7 +90,7 @@ export default function Blog() {
                 <div key={i} className="min-w-[320px] max-w-xs snap-center transition-transform duration-300">
                   <Card className="tech-card overflow-hidden">
                     <div className="flex flex-col md:flex-row">
-                      <div className="md:w-1/3 relative min-h-[200px] max-h-[200px] h-[200px]">
+                      <div className="w-full md:w-1/3 relative aspect-[16/9]">
                         <Image
                           src={getImagePath(post.src)}
                           alt={post.title}
@@ -138,7 +138,7 @@ export default function Blog() {
             {posts.map((post: BlogPost, i: number) => (
               <Card key={i} className="tech-card overflow-hidden">
                 <div className="flex flex-col md:flex-row">
-                  <div className="md:w-1/3 relative min-h-[200px] max-h-[200px] h-[200px]">
+                  <div className="w-full md:w-1/3 relative aspect-[16/9]">
                     <Image
                       src={getImagePath(post.src)}
                       alt={post.title}
@@ -173,6 +173,40 @@ export default function Blog() {
           </div>
         </div>
       </main>
+
+      {/* Photo Gallery Section */}
+      <section className="relative z-10 py-16">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="flex items-center mb-6">
+            <div className="h-4 w-4 bg-purple-600 rounded-sm rotate-45"></div>
+            <h2 className="text-xl font-bold ml-2">PHOTO GALLERY</h2>
+            <div className="tech-line flex-grow ml-4"></div>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {[...Array(8)].map((_, i) => {
+              const themes = ["Office", "Team", "Workspace", "Meeting", "Coding", "Learning", "Training", "Events"]
+              const theme = themes[i % themes.length]
+
+              return (
+                <div key={i} className="relative group overflow-hidden rounded-md gradient-border">
+                  <Image
+                    src={`/placeholder.svg?height=300&width=300&text=OJT+${theme}`}
+                    alt={`OJT ${theme} photo`}
+                    width={300}
+                    height={300}
+                    className="object-cover w-full h-48 transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0e0225] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+                    <h3 className="text-white font-bold text-lg">{theme} Moment</h3>
+                    <p className="text-purple-300 text-sm">Week {Math.floor(Math.random() * 5) + 1}</p>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </section>
 
       <footer className="relative z-10 mt-16">
         <div className="tech-line w-full mb-8"></div>
