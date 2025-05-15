@@ -211,6 +211,64 @@ export default function Blog() {
       <footer className="relative z-10 mt-16">
         <div className="tech-line w-full mb-8"></div>
         <div className="container mx-auto px-4 md:px-6 pb-8">
+          <div className="grid md:grid-cols-4 gap-8">
+            <div className="md:col-span-2">
+              <Link
+                href="/"
+                className="text-xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500 mb-4 inline-block"
+              >
+                nberrr<span className="text-purple-400">_</span>
+              </Link>
+              <p className="text-gray-400 mb-4 max-w-md">
+                A personal journey through my OJT experience. Documenting weekly insights, challenges, and growth as I
+                navigate the professional world.
+              </p>
+              <div className="flex space-x-4">
+                <a
+                  href="#"
+                  className="h-8 w-8 rounded-full bg-[#150a30] flex items-center justify-center hover:bg-purple-900/50 transition-colors"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-purple-400"
+                  >
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                  </svg>
+                </a>
+              
+                <a
+                  href="#"
+                  className="h-8 w-8 rounded-full bg-[#150a30] flex items-center justify-center hover:bg-purple-900/50 transition-colors"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-purple-400"
+                  >
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="tech-line w-full my-8"></div>
           <div className="text-center">
             <p className="text-gray-400">© 2025 nberrr. All rights reserved.</p>
             <p className="text-sm text-gray-500 mt-2">

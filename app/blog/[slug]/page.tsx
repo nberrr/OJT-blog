@@ -121,26 +121,7 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
                 navigate the professional world.
               </p>
             </div>
-            <div>
-              <h3 className="text-lg font-bold mb-4">Quick Links</h3>
-              <ul className="space-y-2">
-                <li>
-                  <Link href="/" className="text-gray-400 hover:text-purple-400 transition-colors flex items-center">
-                    <ArrowRight className="h-3 w-3 mr-1" /> Home
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/blog" className="text-purple-400 transition-colors flex items-center">
-                    <ArrowRight className="h-3 w-3 mr-1" /> Blog
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/about" className="text-gray-400 hover:text-purple-400 transition-colors flex items-center">
-                    <ArrowRight className="h-3 w-3 mr-1" /> About
-                  </Link>
-                </li>
-              </ul>
-            </div>
+            
           </div>
         </div>
       </footer>
