@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image"
 import Link from "next/link"
 import {
@@ -18,15 +20,27 @@ import {
   Layers,
   Wrench,
   Wifi,
+  ArrowLeft,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card } from "@/components/ui/card"
 import { getFeaturedPost, getRecentPosts, getImagePath } from "@/lib/utils"
+import { useRef } from "react"
 
 export default function Home() {
   const featuredPost = getFeaturedPost();
   const recentPosts = getRecentPosts();
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  function scrollContainer(direction: number) {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({
+        left: direction * 320, // adjust to card width
+        behavior: "smooth",
+      });
+    }
+  }
 
   return (
     <div className="min-h-screen bg-[#0a0118] text-white">
@@ -99,9 +113,9 @@ export default function Home() {
                       <Image
                         src="/DOSTlogo.png"
                         alt="DOST Logo"
-                        width={120}
-                        height={120}
-                        className="object-contain w-24 h-24 md:w-32 md:h-32"
+                        width={250}
+                        height={250}
+                        className="object-contain w-24 h-24 md:w-32 md:h-32 drop-shadow-[0_1px_6px_blue] "
                         priority
                       />
                     </div>
@@ -170,7 +184,67 @@ export default function Home() {
                   <div className="tech-line flex-grow ml-4"></div>
                 </div>
 
-                <div className="grid gap-6">
+                {/* Mobile: Horizontal scroll with arrows */}
+                <div className="relative block md:hidden">
+                  <button
+                    className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-[#0a0118]/80 p-2 rounded-full shadow-md"
+                    onClick={() => scrollContainer(-1)}
+                    aria-label="Scroll left"
+                  >
+                    <ArrowLeft className="h-6 w-6 text-purple-400" />
+                  </button>
+                  <div
+                    ref={scrollRef}
+                    className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 hide-scrollbar"
+                  >
+                    {recentPosts.map((post, i) => (
+                      <div key={i} className="min-w-[320px] max-w-xs snap-center transition-transform duration-300">
+                        <Card className="tech-card overflow-hidden">
+                          <div className="flex flex-col md:flex-row">
+                            <div className="md:w-1/3 relative min-h-[200px] max-h-[200px] h-[200px]">
+                              <Image
+                                src={getImagePath(post.src)}
+                                alt={post.title}
+                                fill
+                                className="object-cover w-full h-full"
+                              />
+                            </div>
+                            <div className="p-6 md:w-2/3">
+                              <div className="flex items-center space-x-4 mb-3">
+                                <Badge variant="outline" className="border-purple-500/50 text-purple-300">
+                                  <Calendar className="h-3 w-3 mr-1" />
+                                  {post.date}
+                                </Badge>
+                                <Badge variant="outline" className="border-purple-500/50 text-purple-300">
+                                  {post.week}
+                                </Badge>
+                              </div>
+                              <h3 className="text-xl font-bold mb-2 hover:text-purple-400 transition-colors">
+                                <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+                              </h3>
+                              <p className="text-gray-400 mb-4">{post.description}</p>
+                              <Link href={`/blog/${post.slug}`}>
+                                <Button variant="ghost" className="text-purple-400 hover:text-purple-300 p-0">
+                                  Read Entry
+                                  <ArrowRight className="ml-2 h-4 w-4" />
+                                </Button>
+                              </Link>
+                            </div>
+                          </div>
+                        </Card>
+                      </div>
+                    ))}
+                  </div>
+                  <button
+                    className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-[#0a0118]/80 p-2 rounded-full shadow-md"
+                    onClick={() => scrollContainer(1)}
+                    aria-label="Scroll right"
+                  >
+                    <ArrowRight className="h-6 w-6 text-purple-400" />
+                  </button>
+                </div>
+                {/* Desktop: Grid as usual */}
+                <div className="hidden md:grid gap-6">
                   {recentPosts.map((post, i) => (
                     <Card key={i} className="tech-card overflow-hidden">
                       <div className="flex flex-col md:flex-row">

@@ -60,7 +60,7 @@ export default function BlogPage() {
           </div>
 
           {/* Blog Grid */}
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid sm:grid-cols-2 gap-8">
             {posts.map((post) => (
               <Card key={post.slug} className="overflow-hidden rounded-2xl shadow-lg border-0 bg-transparent">
                 <div className="relative aspect-[4/3] w-full">
