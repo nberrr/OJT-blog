@@ -1,13 +1,26 @@
+"use client";
+
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, Calendar, ChevronLeft } from "lucide-react"
+import { ArrowRight, Calendar, ChevronLeft, ArrowLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card } from "@/components/ui/card"
 import { getAllBlogPosts, getImagePath } from "@/lib/utils"
+import { useRef } from "react"
 
 export default function BlogPage() {
   const posts = getAllBlogPosts();
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  function scrollContainer(direction: number) {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({
+        left: direction * 320, // adjust to card width
+        behavior: "smooth",
+      });
+    }
+  }
 
   return (
     <div className="min-h-screen bg-[#0a0118] text-white">
@@ -59,8 +72,67 @@ export default function BlogPage() {
             </p>
           </div>
 
-          {/* Blog Grid */}
-          <div className="grid sm:grid-cols-2 gap-8">
+          {/* Mobile: Horizontal scroll with arrows */}
+          <div className="relative block md:hidden">
+            <button
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-[#0a0118]/80 p-2 rounded-full shadow-md"
+              onClick={() => scrollContainer(-1)}
+              aria-label="Scroll left"
+            >
+              <ArrowLeft className="h-6 w-6 text-purple-400" />
+            </button>
+            <div
+              ref={scrollRef}
+              className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 hide-scrollbar"
+            >
+              {posts.map((post) => (
+                <div key={post.slug} className="min-w-[320px] max-w-xs snap-center transition-transform duration-300">
+                  <Card className="overflow-hidden rounded-2xl shadow-lg border-0 bg-transparent">
+                    <div className="relative aspect-[4/3] w-full">
+                      <Image
+                        src={getImagePath(post.src)}
+                        alt={post.title}
+                        fill
+                        className="object-cover w-full h-full"
+                        style={{ objectPosition: 'center' }}
+                      />
+                      <div className="absolute top-0 left-0 bg-purple-600/70 text-white px-2 py-1 text-xs md:px-3 md:py-1.5 md:text-sm font-bold z-20 shadow-md rounded-br-lg">
+                        {post.week}
+                      </div>
+                      <div className="absolute bottom-0 left-0 w-full p-3 md:p-6 bg-gradient-to-t from-black/90 via-black/60 to-transparent">
+                        <h2 className="text-lg md:text-2xl font-bold mb-1 md:mb-2 text-white drop-shadow-lg line-clamp-2">{post.title}</h2>
+                        <div className="flex items-center text-xs md:text-sm text-gray-200 mb-1 md:mb-2">
+                          <Calendar className="h-3 w-3 md:h-4 md:w-4 mr-1" />
+                          <span>{post.date}</span>
+                        </div>
+                        <p className="text-gray-200 text-xs md:text-base mb-2 md:mb-4 line-clamp-2">{post.description}</p>
+                        <div className="flex justify-between items-center">
+                          <Badge variant="outline" className="border-purple-300/50 text-purple-200 bg-purple-900/40 text-xs md:text-sm px-2 py-0.5 md:px-3 md:py-1">
+                            {post.week}
+                          </Badge>
+                          <Link href={`/blog/${post.slug}`}>
+                            <Button variant="ghost" className="p-0 h-auto text-white hover:text-purple-300 group text-xs md:text-base">
+                              Read Entry <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                            </Button>
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </Card>
+                </div>
+              ))}
+            </div>
+            <button
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-[#0a0118]/80 p-2 rounded-full shadow-md"
+              onClick={() => scrollContainer(1)}
+              aria-label="Scroll right"
+            >
+              <ArrowRight className="h-6 w-6 text-purple-400" />
+            </button>
+          </div>
+
+          {/* Desktop: Grid as usual */}
+          <div className="hidden md:grid sm:grid-cols-2 gap-8">
             {posts.map((post) => (
               <Card key={post.slug} className="overflow-hidden rounded-2xl shadow-lg border-0 bg-transparent">
                 <div className="relative aspect-[4/3] w-full">
@@ -71,9 +143,6 @@ export default function BlogPage() {
                     className="object-cover w-full h-full"
                     style={{ objectPosition: 'center' }}
                   />
-                  <div className="absolute top-0 left-0 bg-purple-600/70 text-white px-3 py-1 text-sm font-bold z-20 shadow-md rounded-br-lg">
-                    {post.week}
-                  </div>
                   <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/90 via-black/60 to-transparent">
                     <h2 className="text-2xl font-bold mb-2 text-white drop-shadow-lg">{post.title}</h2>
                     <div className="flex items-center text-sm text-gray-200 mb-2">
