@@ -27,12 +27,12 @@ export function getImagePath(path: string): string {
   if (path.startsWith('/uploads')) {
     return path;
   }
-  
+
   // If the path already has an extension, return it as is
   if (path.match(/\.(jpg|jpeg|png|webp)$/i)) {
     return path;
   }
-  
+
   // If no extension, default to .jpg
   return `${path}.jpg`;
 }
@@ -42,9 +42,19 @@ export function getFeaturedPost(): BlogPost {
   return blogPosts["week-10"];
 }
 
-// Get recent blog posts (excluding featured)
+// Get recent blog posts (including featured)
 export function getRecentPosts(count: number = 3): BlogPost[] {
   const posts = getAllBlogPosts();
-  // Get the most recent posts, excluding Week 10
-  return posts.filter(post => post.slug !== "week-10").slice(0, count);
+  // Get the most recent posts, including Week 10
+  return posts.slice(0, count);
+}
+
+// Get the latest blog post (based on week number)
+export function getLatestPost(): BlogPost {
+  const posts = Object.values(blogPosts);
+  return posts.reduce((latest, current) => {
+    const latestWeekNum = parseInt(latest.week.replace(/\D/g, ''));
+    const currentWeekNum = parseInt(current.week.replace(/\D/g, ''));
+    return currentWeekNum > latestWeekNum ? current : latest;
+  });
 }

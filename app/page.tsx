@@ -25,12 +25,13 @@ import {
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card } from "@/components/ui/card"
-import { getFeaturedPost, getRecentPosts, getImagePath } from "@/lib/utils"
+import { getFeaturedPost, getRecentPosts, getImagePath, getLatestPost } from "@/lib/utils"
 import { useRef } from "react"
 
 export default function Home() {
   const featuredPost = getFeaturedPost();
   const recentPosts = getRecentPosts();
+  const latestPost = getLatestPost();
   const scrollRef = useRef<HTMLDivElement>(null);
 
   function scrollContainer(direction: number) {
@@ -218,6 +219,9 @@ export default function Home() {
                                 <Badge variant="outline" className="border-purple-500/50 text-purple-300">
                                   {post.week}
                                 </Badge>
+                                {post.slug === latestPost.slug && (
+                                  <Badge variant="outline" className="bg-purple-600">Latest</Badge>
+                                )}
                               </div>
                               <h3 className="text-xl font-bold mb-2 hover:text-purple-400 transition-colors">
                                 <Link href={`/blog/${post.slug}`}>{post.title}</Link>
@@ -265,6 +269,9 @@ export default function Home() {
                             <Badge variant="outline" className="border-purple-500/50 text-purple-300">
                               {post.week}
                             </Badge>
+                            {post.slug === latestPost.slug && (
+                              <Badge className="bg-purple-600 hover:bg-purple-700">Latest</Badge>
+                            )}
                           </div>
                           <h3 className="text-xl font-bold mb-2 hover:text-purple-400 transition-colors">
                             <Link href={`/blog/${post.slug}`}>{post.title}</Link>
@@ -475,7 +482,7 @@ export default function Home() {
                     <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
                   </svg>
                 </a>
-              
+
                 <a
                   href="#"
                   className="h-8 w-8 rounded-full bg-[#150a30] flex items-center justify-center hover:bg-purple-900/50 transition-colors"
