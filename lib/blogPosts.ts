@@ -275,11 +275,11 @@ export const blogPosts: BlogPosts = {
   },
   "week-11": {
     slug: "week-11",
-    title: "Innovation Summit on Full Blast",
+    title: "Beyond the Summit: Staying Ready, Staying Reliable",
     date: "May 5-9, 2025",
     author: "John Nebrej N. Rempis",
     week: "Week 11",
-    src: "/uploads/week10/cover.jpg",
+    src: "/uploads/week11/cover.jpg",
     images: [
       "/uploads/week11/gallery/pic1.jpg",
       "/uploads/week11/gallery/pic2.jpg",
@@ -290,15 +290,14 @@ export const blogPosts: BlogPosts = {
     ],
     description: "An immersive event experience handling tech support, coordination, and event management at the Innovation Summit South Luzon 2025.",
     content: `
-      <p>This week centered around the highly anticipated Innovation Summit South Luzon held at Pepperland Hotel, Legazpi. We participated in the full event cycle — from ingress and setup to technical standby and post-event reflections — witnessing firsthand how major events are executed with precision, teamwork, and adaptability.</p>
-      <h2>From Set-Up to Success: Behind the Innovation Summit</h2>
-      <p>The excitement for the Innovation Summit South Luzon started early — literally. We reported for overtime on Sunday to help with ingress and prepare the venue at Pepperland Hotel, assisting in transporting equipment and materials from DOST and familiarizing ourselves with the entire layout.</p>
-      <p>I was assigned as a technical standby support. Before the summit officially began, we toured the event areas to understand where simultaneous activities would take place. This helped us be prepared for any issues that could arise during the event proper.</p>
-      <p>Day 1 was an intense but rewarding start. We arrived very early to help set up before the arrival of high-profile guests from across South Luzon, including DOST regional directors, agency heads, and walk-in participants. The day included simultaneous events — the Opening Ceremony, media interviews, and breakout activities happening on other floors. We remained alert and ready, resolving technical issues as they came.</p>
-      <p>Day 2 continued the momentum with the same level of energy and professionalism. The consistency in support, coordination, and presence helped make the summit a complete success.</p>
-      <p>Our experience was made more meaningful thanks to the guidance and support from the MIS and S&T Promotions team, especially Ma’am Sheen, who always looked out for us despite the hectic schedule. Her leadership made us feel seen and appreciated.</p>
-      <p>Back at the office, we gathered for a post-event debrief where DOST expressed their gratitude for our contributions. Hearing that our efforts made a real difference in the event’s success was incredibly fulfilling.</p>
-      <p>This week was an unforgettable highlight of our OJT — a chance to apply our technical skills in a high-stakes environment and grow through real-world teamwork. </p>
+      <p>After the high of the Innovation Summit, Week 11 returned us to day-to-day operations. I was on call for tech support — handling printer issues, doing LAN recabling, and helping the RSTL team move equipment. We also received a food treat from Ma’am Sheen as a thank-you gesture. </p>
+      <h2>Technical Support and Post-Event Assistance</h2>
+      <p>As things settled down after the Innovation Summit, Week 11 reminded us that technical support doesn’t stop once the big events are over. I found myself becoming the go-to person for urgent tasks — troubleshooting printers, cleaning and resetting devices that were acting up, and ensuring they worked smoothly again.</p>
+      <p>One major task involved recabling LAN connections in areas where the network had gone down. This hands-on work involved checking connectivity points, replacing faulty cables, and testing stability — practical skills that emphasized the physical side of IT support.</p>
+      <p>We were also asked to help the RSTL department move heavy equipment and supplies to the third floor. While not tech-related, it reminded me how teamwork and willingness to help make the workplace better.</p>
+      <p>A touching part of this week was Ma’am Sheen treating us to food. It was her way of thanking us for our hard work during the summit — a gesture that made us feel recognized and appreciated.</p>
+      <p>Week 11 reinforced a valuable lesson: reliability matters. Whether it’s fixing devices, helping with physical tasks, or just being ready to assist, our support plays a vital role in keeping operations smooth and efficient.</p>
+     
     `
   }
 }; 
