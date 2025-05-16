@@ -90,13 +90,17 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
               <h1 className="text-4xl font-bold mb-0">{post.title}</h1>
               <span className="inline-block bg-purple-700 text-white text-xs font-semibold px-3 py-1 rounded-full align-middle">{post.week}</span>
             </div>
-            <div className="flex items-center text-gray-400">
+            <div className="flex items-center text-gray-400 mb-6">
               <Calendar className="h-4 w-4 mr-2" />
               <span>{post.date}</span>
             </div>
 
-            <div 
-              className="prose prose-invert max-w-none mb-12 [&>h2]:text-2xl [&>h2]:font-bold [&>h2]:mt-8 [&>h2]:mb-4 [&>p]:mb-4 [&>p]:text-gray-300" 
+            <div className="bg-purple-900/20 border border-purple-500/20 rounded-lg p-6 mb-8">
+              <p className="text-lg text-gray-200 italic">{post.description}</p>
+            </div>
+
+            <div
+              className="prose prose-invert max-w-none mb-12 [&>h2]:text-2xl [&>h2]:font-bold [&>h2]:mt-8 [&>h2]:mb-4 [&>p]:mb-4 [&>p]:text-gray-300"
               dangerouslySetInnerHTML={{ __html: post.content }}
             />
 
@@ -156,7 +160,7 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
                 navigate the professional world.
               </p>
             </div>
-            
+
           </div>
         </div>
       </footer>
