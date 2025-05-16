@@ -139,7 +139,7 @@ export const blogPosts: BlogPosts = {
   },
   "week-6": {
     slug: "week-6",
-    title: "Beyond the Celebration, We Keep Moving",
+    title: "Designs Dashboards and Deliverables",
     date: "March 31 - April 4, 2025",
     author: "John Nebrej N. Rempis",
     week: "Week 6",
