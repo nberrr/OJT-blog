@@ -5,12 +5,22 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, Calendar, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { getBlogPostBySlug, getImagePath } from '@/lib/utils';
+import { getBlogPostBySlug, getImagePath, getAllBlogPosts } from '@/lib/utils';
 import { BlogPost } from '@/lib/types';
 
 export default function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = use(params);
   const post = getBlogPostBySlug(slug);
+  const allPosts = getAllBlogPosts();
+  // Sort posts by week number ascending for navigation
+  const allPostsSorted = [...allPosts].sort((a, b) => {
+    const weekA = parseInt(a.week.replace(/\D/g, ''));
+    const weekB = parseInt(b.week.replace(/\D/g, ''));
+    return weekA - weekB;
+  });
+  const currentIndex = allPostsSorted.findIndex(p => p.slug === slug);
+  const prevPost = currentIndex > 0 ? allPostsSorted[currentIndex - 1] : null;
+  const nextPost = currentIndex < allPostsSorted.length - 1 ? allPostsSorted[currentIndex + 1] : null;
 
   if (!post) {
     return (
@@ -76,12 +86,13 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
               />
             </div>
 
-            <div className="mb-8">
-              <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
-              <div className="flex items-center text-gray-400">
-                <Calendar className="h-4 w-4 mr-2" />
-                <span>{post.date}</span>
-              </div>
+            <div className="mb-8 flex items-center gap-4">
+              <h1 className="text-4xl font-bold mb-0">{post.title}</h1>
+              <span className="inline-block bg-purple-700 text-white text-xs font-semibold px-3 py-1 rounded-full align-middle">{post.week}</span>
+            </div>
+            <div className="flex items-center text-gray-400">
+              <Calendar className="h-4 w-4 mr-2" />
+              <span>{post.date}</span>
             </div>
 
             <div 
@@ -102,6 +113,30 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
               ))}
             </div>
           </article>
+
+          {/* Previous/Next Navigation */}
+          <div className="flex justify-between max-w-4xl mx-auto my-12 gap-4">
+            {prevPost ? (
+              <Link href={`/blog/${prevPost.slug}`} className="block flex-1">
+                <div className="border border-purple-900/40 rounded-lg p-4 hover:bg-purple-900/10 transition-colors">
+                  <div className="text-xs text-gray-400 mb-1 flex items-center">
+                    <ArrowLeft className="h-4 w-4 mr-1" /> Previous
+                  </div>
+                  <div className="font-bold text-white truncate">{prevPost.week}: {prevPost.title}</div>
+                </div>
+              </Link>
+            ) : <div />}
+            {nextPost ? (
+              <Link href={`/blog/${nextPost.slug}`} className="block flex-1 text-right">
+                <div className="border border-purple-900/40 rounded-lg p-4 hover:bg-purple-900/10 transition-colors">
+                  <div className="text-xs text-gray-400 mb-1 flex items-center justify-end">
+                    Next <ArrowRight className="h-4 w-4 ml-1" />
+                  </div>
+                  <div className="font-bold text-white truncate">{nextPost.week}: {nextPost.title}</div>
+                </div>
+              </Link>
+            ) : <div />}
+          </div>
         </div>
       </main>
 

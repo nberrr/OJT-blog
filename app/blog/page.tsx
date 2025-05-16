@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card } from "@/components/ui/card"
 import { getAllBlogPosts, getImagePath } from "@/lib/utils"
-import { useRef } from "react"
+import { useRef, useState } from "react"
 
 interface BlogPost {
   slug: string;
@@ -19,7 +19,17 @@ interface BlogPost {
 }
 
 export default function Blog() {
-  const posts = getAllBlogPosts();
+  const allPosts = getAllBlogPosts();
+  const [sortOrder, setSortOrder] = useState<'latest' | 'oldest'>('latest');
+  const posts = [...allPosts].sort((a, b) => {
+    const weekA = parseInt(a.week.replace(/\D/g, ''));
+    const weekB = parseInt(b.week.replace(/\D/g, ''));
+    if (sortOrder === 'latest') {
+      return weekB - weekA;
+    } else {
+      return weekA - weekB;
+    }
+  });
   const scrollRef = useRef<HTMLDivElement>(null);
 
   function scrollContainer(direction: number) {
@@ -71,6 +81,15 @@ export default function Blog() {
             <div className="h-4 w-4 bg-purple-600 rounded-sm rotate-45"></div>
             <h1 className="text-2xl font-bold ml-2">ALL ENTRIES</h1>
             <div className="tech-line flex-grow ml-4"></div>
+            <select
+              className="ml-4 bg-[#1a093a] border border-purple-700 text-white rounded px-3 py-1 text-sm focus:outline-none"
+              value={sortOrder}
+              onChange={e => setSortOrder(e.target.value as 'latest' | 'oldest')}
+              aria-label="Sort blog posts"
+            >
+              <option value="latest">Latest</option>
+              <option value="oldest">Oldest</option>
+            </select>
           </div>
 
           {/* Mobile: Horizontal scroll with arrows */}
@@ -199,7 +218,7 @@ export default function Blog() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0e0225] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
                     <h3 className="text-white font-bold text-lg">{theme} Moment</h3>
-                    <p className="text-purple-300 text-sm">Week {Math.floor(Math.random() * 5) + 1}</p>
+                    <p className="text-purple-300 text-sm">Week {i + 1}</p>
                   </div>
                 </div>
               )

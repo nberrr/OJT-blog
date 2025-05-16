@@ -129,7 +129,7 @@ export const blogPosts: BlogPosts = {
     ],
     description: "As Women's Month ends, we stay committed as development and progress continue.",
     content: `
-      <p>Week four centered around collaboration and teamwork. After the intensity of last week's individual challenge, this week provided valuable lessons in working effectively with others and the power of collective effort.</p>
+      <p>A meaningful week filled with development work, celebration, and self-care during the peak of Women’s Month.</p>
       <h2>Celebrating Women's Month with Care and Progress</h2>
       <p>Week 5 was both productive and refreshing as we continued our development tasks while also celebrating the peak of Women's Month. The Department of Science and Technology (DOST) prepared a special treat for everyone — a buffet and a free pamper day with services from head to toe, including massages, haircuts, and more.</p>
       <p>We were invited to enjoy the services too. I personally got a haircut and a relaxing hand massage, while some of my co-interns made the most of the experience by availing every service offered. It was a thoughtful gesture that truly lifted everyone's spirits.</p>
@@ -259,6 +259,34 @@ export const blogPosts: BlogPosts = {
       "/uploads/week10/gallery/pic7.jpg",
       "/uploads/week10/gallery/pic8.jpg",
       "/uploads/week10/gallery/pic9.jpg",
+    ],
+    description: "An immersive event experience handling tech support, coordination, and event management at the Innovation Summit South Luzon 2025.",
+    content: `
+      <p>This week centered around the highly anticipated Innovation Summit South Luzon held at Pepperland Hotel, Legazpi. We participated in the full event cycle — from ingress and setup to technical standby and post-event reflections — witnessing firsthand how major events are executed with precision, teamwork, and adaptability.</p>
+      <h2>From Set-Up to Success: Behind the Innovation Summit</h2>
+      <p>The excitement for the Innovation Summit South Luzon started early — literally. We reported for overtime on Sunday to help with ingress and prepare the venue at Pepperland Hotel, assisting in transporting equipment and materials from DOST and familiarizing ourselves with the entire layout.</p>
+      <p>I was assigned as a technical standby support. Before the summit officially began, we toured the event areas to understand where simultaneous activities would take place. This helped us be prepared for any issues that could arise during the event proper.</p>
+      <p>Day 1 was an intense but rewarding start. We arrived very early to help set up before the arrival of high-profile guests from across South Luzon, including DOST regional directors, agency heads, and walk-in participants. The day included simultaneous events — the Opening Ceremony, media interviews, and breakout activities happening on other floors. We remained alert and ready, resolving technical issues as they came.</p>
+      <p>Day 2 continued the momentum with the same level of energy and professionalism. The consistency in support, coordination, and presence helped make the summit a complete success.</p>
+      <p>Our experience was made more meaningful thanks to the guidance and support from the MIS and S&T Promotions team, especially Ma’am Sheen, who always looked out for us despite the hectic schedule. Her leadership made us feel seen and appreciated.</p>
+      <p>Back at the office, we gathered for a post-event debrief where DOST expressed their gratitude for our contributions. Hearing that our efforts made a real difference in the event’s success was incredibly fulfilling.</p>
+      <p>This week was an unforgettable highlight of our OJT — a chance to apply our technical skills in a high-stakes environment and grow through real-world teamwork. </p>
+    `
+  },
+  "week-11": {
+    slug: "week-11",
+    title: "Innovation Summit on Full Blast",
+    date: "May 5-9, 2025",
+    author: "John Nebrej N. Rempis",
+    week: "Week 11",
+    src: "/uploads/week10/cover.jpg",
+    images: [
+      "/uploads/week11/gallery/pic1.jpg",
+      "/uploads/week11/gallery/pic2.jpg",
+      "/uploads/week11/gallery/pic3.jpg",
+      "/uploads/week11/gallery/pic4.jpg",
+      "/uploads/week11/gallery/pic5.jpg",
+      "/uploads/week11/gallery/pic6.jpg"
     ],
     description: "An immersive event experience handling tech support, coordination, and event management at the Innovation Summit South Luzon 2025.",
     content: `
