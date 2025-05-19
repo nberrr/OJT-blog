@@ -192,7 +192,7 @@ export default function Home() {
                       <h1 className="text-2xl md:text-4xl font-bold mb-3 neon-text text-shadow-lg">
                         {featuredPost.title}
                       </h1>
-                      <p className="text-gray-200 mb-6 max-w-3xl text-shadow-sm backdrop-blur-sm bg-[#0e0225]/40 p-2 rounded-md md:bg-transparent md:p-0 md:backdrop-blur-none">
+                      <p className="text-gray-200 mb-6 max-w-3xl text-shadow-sm p-2 rounded-md md:bg-transparent md:p-0 md:backdrop-blur-none">
                         {featuredPost.description}
                       </p>
                       <Link href={`/blog/${featuredPost.slug}`}>
@@ -247,10 +247,11 @@ export default function Home() {
                                 <Badge variant="outline" className="border-purple-500/50 text-purple-300">
                                   {post.week}
                                 </Badge>
-                                {post.slug === latestPost.slug && (
+                              
+                              </div>
+                              {post.slug === latestPost.slug && (
                                   <Badge variant="outline" className="bg-purple-600">Latest</Badge>
                                 )}
-                              </div>
                               <h3 className="text-xl font-bold mb-2 hover:text-purple-400 transition-colors">
                                 <Link href={`/blog/${post.slug}`}>{post.title}</Link>
                               </h3>

@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card } from "@/components/ui/card"
 import { getAllBlogPosts, getImagePath, getLatestPost } from "@/lib/utils"
-import { useRef, useState } from "react"
+import { useRef, useState, useEffect, useCallback } from "react"
 
 interface BlogPost {
   slug: string;
@@ -32,6 +32,7 @@ export default function Blog() {
     }
   });
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [openWeek, setOpenWeek] = useState<string | null>(null);
 
   function scrollContainer(direction: number) {
     if (scrollRef.current) {
@@ -93,109 +94,118 @@ export default function Blog() {
             </select>
           </div>
 
-          {/* Mobile: Horizontal scroll with arrows */}
-          <div className="relative block md:hidden">
-            <button
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-[#0a0118]/80 p-2 rounded-full shadow-md"
-              onClick={() => scrollContainer(-1)}
-              aria-label="Scroll left"
-            >
-              <ArrowLeft className="h-6 w-6 text-purple-400" />
-            </button>
-            <div
-              ref={scrollRef}
-              className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 hide-scrollbar"
-            >
-              {posts.map((post: BlogPost, i: number) => (
-                <div key={i} className="min-w-[320px] max-w-xs snap-center transition-transform duration-300">
-                  <Card className="tech-card overflow-hidden">
-                    <div className="flex flex-col md:flex-row">
-                      <div className="w-full md:w-1/3 relative aspect-[16/9]">
-                        <Image
-                          src={getImagePath(post.src)}
-                          alt={post.title}
-                          fill
-                          className="object-cover w-full h-full"
-                        />
-                      </div>
-                      <div className="p-6 md:w-2/3">
-                        <div className="flex items-center space-x-4 mb-3">
-                          <Badge variant="outline" className="border-purple-500/50 text-purple-300">
-                            <Calendar className="h-3 w-3 mr-1" />
-                            {post.date}
-                          </Badge>
-                          <Badge variant="outline" className="border-purple-500/50 text-purple-300">
-                            {post.week}
-                          </Badge>
-                          {post.slug === latestPost.slug && (
-                            <Badge className="bg-purple-600 hover:bg-purple-700">Latest</Badge>
-                          )}
+          {/* Weekly Posts Section */}
+          {/* Desktop: Horizontal scrollable list with images and titles */}
+          <div className="hidden md:block">
+            <div className="relative">
+              <button
+                className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-[#0a0118]/80 p-2 rounded-full shadow-md"
+                onClick={() => scrollContainer(-1)}
+                aria-label="Scroll left"
+              >
+                <ArrowLeft className="h-6 w-6 text-purple-400" />
+              </button>
+              <div
+                ref={scrollRef}
+                className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 hide-scrollbar"
+              >
+                {posts.map((post: BlogPost, i: number) => (
+                  <div key={i} className="min-w-[320px] max-w-xs snap-center transition-transform duration-300" id={post.slug}>
+                    <Card className="tech-card overflow-hidden">
+                      <div className="flex flex-col md:flex-row">
+                        <div className="w-full md:w-1/3 relative aspect-[16/9]">
+                          <Image
+                            src={getImagePath(post.src)}
+                            alt={post.title}
+                            fill
+                            className="object-cover w-full h-full"
+                          />
                         </div>
-                        <h3 className="text-xl font-bold mb-2 hover:text-purple-400 transition-colors">
-                          <Link href={`/blog/${post.slug}`}>{post.title}</Link>
-                        </h3>
-                        <p className="text-gray-400 mb-4">{post.description}</p>
-                        <Link href={`/blog/${post.slug}`}>
-                          <Button variant="ghost" className="text-purple-400 hover:text-purple-300 p-0">
-                            Read Entry
-                            <ArrowRight className="ml-2 h-4 w-4" />
-                          </Button>
-                        </Link>
+                        <div className="p-6 md:w-2/3">
+                          <h3 className="text-xl font-bold mb-2 hover:text-purple-400 transition-colors">
+                            <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+                          </h3>
+                          <p className="text-gray-400 mb-4 line-clamp-2">{post.description}</p>
+                          <Link href={`/blog/${post.slug}`}>
+                            <Button variant="ghost" className="text-purple-400 hover:text-purple-300 p-0">
+                              Read Entry
+                              <ArrowRight className="ml-2 h-4 w-4" />
+                            </Button>
+                          </Link>
+                        </div>
                       </div>
-                    </div>
-                  </Card>
-                </div>
-              ))}
+                    </Card>
+                  </div>
+                ))}
+              </div>
+              <button
+                className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-[#0a0118]/80 p-2 rounded-full shadow-md"
+                onClick={() => scrollContainer(1)}
+                aria-label="Scroll right"
+              >
+                <ArrowRight className="h-6 w-6 text-purple-400" />
+              </button>
             </div>
-            <button
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-[#0a0118]/80 p-2 rounded-full shadow-md"
-              onClick={() => scrollContainer(1)}
-              aria-label="Scroll right"
-            >
-              <ArrowRight className="h-6 w-6 text-purple-400" />
-            </button>
           </div>
-
-          {/* Desktop: Grid as usual */}
-          <div className="hidden md:grid gap-6">
-            {posts.map((post: BlogPost, i: number) => (
-              <Card key={i} className="tech-card overflow-hidden">
-                <div className="flex flex-col md:flex-row">
-                  <div className="w-full md:w-1/3 relative aspect-[16/9]">
-                    <Image
-                      src={getImagePath(post.src)}
-                      alt={post.title}
-                      fill
-                      className="object-cover w-full h-full"
-                    />
+          {/* Mobile: Vertical collapsible list of week titles and cards */}
+          <div className="block md:hidden">
+            <ul className="divide-y divide-purple-900 bg-[#12062a] rounded-lg overflow-hidden">
+              {posts.map((post) => (
+                <li key={post.slug}>
+                  <button
+                    className="w-full text-left py-4 px-4 hover:bg-purple-900/30 text-purple-200 font-semibold text-base focus:outline-none flex justify-between items-center"
+                    onClick={() => setOpenWeek(openWeek === post.slug ? null : post.slug)}
+                    aria-expanded={openWeek === post.slug}
+                  >
+                    <span>{post.week}: {post.title}</span>
+                    <span className={`transition-transform duration-200 ${openWeek === post.slug ? 'rotate-90' : ''}`}>▶</span>
+                  </button>
+                  <div
+                    className={`transition-all duration-300 overflow-hidden bg-[#1a093a] ${openWeek === post.slug ? 'max-h-[1000px] py-4 px-2' : 'max-h-0 py-0 px-2'}`}
+                    style={{
+                      borderBottomLeftRadius: openWeek === post.slug ? '0.75rem' : undefined,
+                      borderBottomRightRadius: openWeek === post.slug ? '0.75rem' : undefined,
+                    }}
+                  >
+                    {openWeek === post.slug && (
+                      <Card className="tech-card overflow-hidden">
+                        <div className="flex flex-col">
+                          <div className="w-full relative aspect-[16/9] mb-4">
+                            <Image
+                              src={getImagePath(post.src)}
+                              alt={post.title}
+                              fill
+                              className="object-cover w-full h-full rounded-t-lg"
+                            />
+                          </div>
+                          <div className="p-4">
+                            <div className="flex items-center space-x-4 mb-3">
+                              <Badge variant="outline" className="border-purple-500/50 text-purple-300">
+                                <Calendar className="h-3 w-3 mr-1" />
+                                {post.date}
+                              </Badge>
+                              <Badge variant="outline" className="border-purple-500/50 text-purple-300">
+                                {post.week}
+                              </Badge>
+                              {post.slug === latestPost.slug && (
+                                <Badge className="bg-purple-600 hover:bg-purple-700">Latest</Badge>
+                              )}
+                            </div>
+                            <h3 className="text-xl font-bold mb-2 hover:text-purple-400 transition-colors">
+                              <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+                            </h3>
+                            <p className="text-gray-400 mb-4">{post.description}</p>
+                            <Link href={`/blog/${post.slug}`}>
+                              <Button className="w-full bg-purple-600 hover:bg-purple-700 mt-2">Read Entry</Button>
+                            </Link>
+                          </div>
+                        </div>
+                      </Card>
+                    )}
                   </div>
-                  <div className="p-6 md:w-2/3">
-                    <div className="flex items-center space-x-4 mb-3">
-                      <Badge variant="outline" className="border-purple-500/50 text-purple-300">
-                        <Calendar className="h-3 w-3 mr-1" />
-                        {post.date}
-                      </Badge>
-                      <Badge variant="outline" className="border-purple-500/50 text-purple-300">
-                        {post.week}
-                      </Badge>
-                      {post.slug === latestPost.slug && (
-                        <Badge className="bg-purple-600 hover:bg-purple-700">Latest</Badge>
-                      )}
-                    </div>
-                    <h3 className="text-xl font-bold mb-2 hover:text-purple-400 transition-colors">
-                      <Link href={`/blog/${post.slug}`}>{post.title}</Link>
-                    </h3>
-                    <p className="text-gray-400 mb-4">{post.description}</p>
-                    <Link href={`/blog/${post.slug}`}>
-                      <Button variant="ghost" className="text-purple-400 hover:text-purple-300 p-0">
-                        Read Entry
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </Button>
-                    </Link>
-                  </div>
-                </div>
-              </Card>
-            ))}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </main>
