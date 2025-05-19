@@ -326,37 +326,6 @@ export default function Home() {
                 </Link>
                 </div>
               </section>
-
-              <section id="photo-highlights" className="mb-16">
-                <div className="flex items-center mb-6">
-                  <div className="h-4 w-4 bg-purple-600 rounded-sm rotate-45"></div>
-                  <h2 className="text-xl font-bold ml-2">PHOTO HIGHLIGHTS</h2>
-                  <div className="tech-line flex-grow ml-4"></div>
-                </div>
-
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                  {[...Array(6)].map((_, i) => {
-                    const themes = ["Office", "Team", "Workspace", "Meeting", "Coding", "Learning"]
-                    const theme = themes[i % themes.length]
-
-                    return (
-                      <div key={i} className="relative group overflow-hidden rounded-md gradient-border">
-                        <Image
-                          src={`/placeholder.svg?height=300&width=300&text=OJT+${theme}`}
-                          alt={`OJT ${theme} photo`}
-                          width={300}
-                          height={300}
-                          className="object-cover w-full h-48 transition-transform duration-500 group-hover:scale-110"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#0e0225] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-                          <h3 className="text-white font-bold text-lg">{theme} Moment</h3>
-                          <p className="text-purple-300 text-sm">Week {themes.indexOf(theme) + 1}</p>
-                        </div>
-                      </div>
-                    )
-                  })}
-                </div>
-              </section>
             </div>
 
             <div className="lg:w-1/3 space-y-8">
@@ -473,6 +442,46 @@ export default function Home() {
               </div>
             </div>
           </div>
+
+          {/* Move PHOTO HIGHLIGHTS section here, outside the flex row, so it spans full width */}
+          <section id="photo-highlights" className="mb-16">
+            <div className="flex items-center mb-6">
+              <div className="h-4 w-4 bg-purple-600 rounded-sm rotate-45"></div>
+              <h2 className="text-xl font-bold ml-2">PHOTO HIGHLIGHTS</h2>
+              <div className="tech-line flex-grow ml-4"></div>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full">
+              {[
+                "8da5168e-f2bc-4f90-9d5d-38b245bdb2e9.jpg",
+                "93c2a5b2-a2e5-479a-96a7-b1ce12a42bf4.jpg",
+                "98a0d388-17a2-43ca-a4fb-421f8180c645.jpg",
+                "c7faea7b-70fa-4903-a551-109d13618026.jpg",
+                "1d9dc741-25af-401e-8ea4-78137718aefd.jpg",
+                "f82dd783-5fb7-4553-991c-c3ce6d32bf54.jpg",
+                "088e897b-a907-46e9-82f0-f3658832a419.jpg",
+                "486670963_1709349266671196_3884478776614334995_n.jpg"
+              ].map((filename, i) => (
+                <div key={i} className="relative group overflow-hidden rounded-md gradient-border w-full h-48 md:h-56">
+                  <Image
+                    src={`/uploads/highlights/${filename}`}
+                    alt={`OJT Highlight ${i + 1}`}
+                    fill
+                    className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0e0225] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+        
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 text-center">
+              <Link href="/blog#photo-gallery">
+                <Button className="bg-purple-600 hover:bg-purple-700 tech-button">
+                  See Gallery
+                </Button>
+              </Link>
+            </div>
+          </section>
         </div>
       </main>
 

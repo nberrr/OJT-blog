@@ -86,9 +86,9 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
               />
             </div>
 
-            <div className="mb-8 flex items-center gap-4">
+            <div className="mb-8 flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4">
               <h1 className="text-4xl font-bold mb-0">{post.title}</h1>
-              <span className="inline-block bg-purple-700 text-white text-xs font-semibold px-3 py-1 rounded-full align-middle">{post.week}</span>
+              <span className="inline-block bg-purple-700 text-white text-xs font-semibold px-3 py-1 rounded-full align-middle md:ml-2">{post.week}</span>
             </div>
             <div className="flex items-center text-gray-400 mb-6">
               <Calendar className="h-4 w-4 mr-2" />

@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { Card } from "@/components/ui/card"
 import { getAllBlogPosts, getImagePath, getLatestPost } from "@/lib/utils"
 import { useRef, useState, useEffect, useCallback } from "react"
+import PolaroidGallery from "../components/PolaroidGallery"
 
 interface BlogPost {
   slug: string;
@@ -215,28 +216,7 @@ export default function Blog() {
             <div className="tech-line flex-grow ml-4"></div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {[...Array(8)].map((_, i) => {
-              const themes = ["Office", "Team", "Workspace", "Meeting", "Coding", "Learning", "Training", "Events"]
-              const theme = themes[i % themes.length]
-
-              return (
-                <div key={i} className="relative group overflow-hidden rounded-md gradient-border">
-                  <Image
-                    src={`/placeholder.svg?height=300&width=300&text=OJT+${theme}`}
-                    alt={`OJT ${theme} photo`}
-                    width={300}
-                    height={300}
-                    className="object-cover w-full h-48 transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0e0225] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-                    <h3 className="text-white font-bold text-lg">{theme} Moment</h3>
-                    <p className="text-purple-300 text-sm">Week {i + 1}</p>
-                  </div>
-                </div>
-              )
-            })}
-          </div>
+          <PolaroidGallery />
         </div>
       </section>
 
