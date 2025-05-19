@@ -475,7 +475,7 @@ export default function Home() {
               ))}
             </div>
             <div className="mt-6 text-center">
-              <Link href="/blog#photo-gallery">
+              <Link href="/blog#photogallery">
                 <Button className="bg-purple-600 hover:bg-purple-700 tech-button">
                   See Gallery
                 </Button>

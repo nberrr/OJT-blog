@@ -208,7 +208,7 @@ export default function Blog() {
       </main>
 
       {/* Photo Gallery Section */}
-      <section className="relative z-10 py-16">
+      <section id= "photogallery"className="relative z-10 py-16">
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex items-center mb-6">
             <div className="h-4 w-4 bg-purple-600 rounded-sm rotate-45"></div>
