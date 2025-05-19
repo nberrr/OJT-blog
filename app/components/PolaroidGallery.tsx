@@ -57,7 +57,7 @@ export default function PolaroidGallery() {
   return (
     <div className="relative w-full min-h-[600px] py-8">
       {/* Desktop: Messy flex-wrap layout */}
-      <div className="hidden sm:flex relative w-full h-full flex-wrap justify-center items-center gap-4">
+      <div className="hidden md:flex relative w-full h-full flex-wrap justify-center items-center gap-4">
         {images.map((img, i) => {
           const size = getPolaroidSize(img.orientation);
           const transform = getRandomTransform();
@@ -91,41 +91,36 @@ export default function PolaroidGallery() {
           );
         })}
       </div>
-      {/* Mobile: Horizontal scrollable messy row */}
-      <div className="sm:hidden w-full overflow-x-auto pb-4">
-        <div className="flex flex-nowrap gap-2 pl-2 pr-2">
-          {images.map((img, i) => {
-            const transform = getRandomTransform();
-            return (
-              <motion.div
-                key={img.src}
-                className="polaroid-frame cursor-pointer select-none"
-                style={{
-                  minWidth: '110px',
-                  maxWidth: '130px',
-                  height: '170px',
-                  zIndex: 1,
-                }}
-                initial={{ rotate: 0, x: 0, y: 0, opacity: 0 }}
-                animate={{ ...transform, opacity: 1 }}
-                transition={{ type: 'spring', stiffness: 100, damping: 15, delay: i * 0.03 }}
-                whileHover={{ scale: 1.07, zIndex: 10, boxShadow: '0 8px 32px 0 rgba(80,0,120,0.18)' }}
-                onClick={() => setSelectedImage(img)}
-              >
-                <div className="relative w-full h-full bg-white rounded-lg shadow-lg border border-gray-200 flex flex-col items-center justify-center polaroid-inner">
-                  <Image
-                    src={img.src}
-                    alt="Polaroid photo"
-                    fill
-                    className="object-contain p-2"
-                    sizes="120px"
-                  />
-                  <div className="w-full text-center text-xs text-gray-500 font-mono pt-2 pb-1 bg-white rounded-b-lg">OJT</div>
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
+      {/* Mobile/Tablet: Grid layout, 2-3 per row, messy look */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 md:hidden w-full">
+        {images.map((img, i) => {
+          const transform = getRandomTransform();
+          return (
+            <motion.div
+              key={img.src}
+              className="polaroid-frame cursor-pointer select-none w-full aspect-[3/4] max-w-[140px] mx-auto"
+              style={{
+                zIndex: 1,
+              }}
+              initial={{ rotate: 0, opacity: 0 }}
+              animate={{ rotate: transform.rotate, opacity: 1 }}
+              transition={{ type: 'spring', stiffness: 100, damping: 15, delay: i * 0.03 }}
+              whileHover={{ scale: 1.07, zIndex: 10, boxShadow: '0 8px 32px 0 rgba(80,0,120,0.18)' }}
+              onClick={() => setSelectedImage(img)}
+            >
+              <div className="relative w-full h-full bg-white rounded-lg shadow-lg border border-gray-200 flex flex-col items-center justify-center polaroid-inner">
+                <Image
+                  src={img.src}
+                  alt="Polaroid photo"
+                  fill
+                  className="object-contain p-2"
+                  sizes="50vw"
+                />
+                <div className="w-full text-center text-xs text-gray-500 font-mono pt-2 pb-1 bg-white rounded-b-lg">OJT</div>
+              </div>
+            </motion.div>
+          );
+        })}
       </div>
       {/* Modal */}
       <AnimatePresence>
@@ -156,14 +151,14 @@ export default function PolaroidGallery() {
                 </button>
                 <div className="flex items-center justify-center w-full h-full">
                   <div className="relative bg-white rounded-lg flex items-center justify-center overflow-hidden"
-                    style={{ maxWidth: '90vw', maxHeight: '80vh' }}
+                    style={{ maxWidth: '90vw', maxHeight: '70vh' }}
                   >
                     <Image
                       src={selectedImage.src}
                       alt="Selected image"
                       width={selectedImage.width}
                       height={selectedImage.height}
-                      className="object-contain w-full h-full max-w-[90vw] max-h-[80vh] sm:max-w-[98vw] sm:max-h-[60vh]"
+                      className="object-contain w-full h-full max-w-[90vw] max-h-[70vh]"
                       priority
                     />
                   </div>
