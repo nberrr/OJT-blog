@@ -85,17 +85,17 @@ export default function Home() {
               <div className="absolute -right-20 -top-20 w-60 h-60 bg-purple-600/20 rounded-full blur-3xl"></div>
               <div className="absolute -left-20 -bottom-20 w-60 h-60 bg-blue-600/20 rounded-full blur-3xl"></div>
 
-              {/* Mobile logo - top right */}
-              <div className="absolute top-4 right-4 md:hidden">
-                <div className="relative w-12 h-12">
+              {/* Mobile logo - center above heading */}
+              <div className="md:hidden flex justify-center mb-4">
+                <div className="relative w-16 h-16">
                   <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 animate-pulse blur-md"></div>
                   <div className="absolute inset-1 rounded-full bg-[#0a0118] flex items-center justify-center">
                     <Image
                       src="/DOSTlogo.png"
                       alt="DOST Logo"
-                      width={100}
-                      height={100}
-                      className="object-contain w-8 h-8 drop-shadow-[0_1px_6px_blue]"
+                      width={128}
+                      height={128}
+                      className="object-contain w-12 h-12 drop-shadow-[0_1px_6px_blue]"
                       priority
                     />
                   </div>
@@ -103,14 +103,14 @@ export default function Home() {
               </div>
 
               <div className="relative flex flex-col md:flex-row items-center gap-6 md:gap-10">
-                <div className="w-full md:w-2/3 pr-14 md:pr-0">
+                <div className="w-full flex-col text-center md:w-2/3  md:pr-0">
                   <h1 className="text-3xl md:text-5xl font-bold mb-4">
                     <span className="animated-gradient-text">The Art of Productive Laziness</span>
                   </h1>
                   <p className="text-lg text-gray-300 mb-6">
                   A personal journey through my OJT experience at DOST, documenting how strategic efficiency and smart work can lead to greater productivity than constant busyness.
                   </p>
-                  <div className="flex flex-wrap gap-4">
+                  <div className="flex flex-wrap justify-center gap-4">
                     <Link href="/blog">
                     <Button className="bg-purple-600 hover:bg-purple-700 tech-button">
                       Explore My Journey
@@ -163,7 +163,7 @@ export default function Home() {
                       alt={featuredPost.title}
                       width={800}
                       height={400}
-                      className="w-full h-[300px] md:h-[400px] object-cover"
+                      className="w-full h-[300px] md:h-[400px] object-cover scale-110 md:scale-100 transition-transform duration-300"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0e0225] via-[#0e0225]/70 to-transparent"></div>
                     <div className="absolute top-0 right-0 z-10">
@@ -178,7 +178,7 @@ export default function Home() {
                         </Badge>
                       </div>
                     )}
-                    <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+                    <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-4 md:p-8 featured-overlay">
                       <div className="flex flex-wrap items-center gap-2 mb-3">
                         <Badge variant="outline" className="border-purple-500/50 text-purple-300 whitespace-nowrap bg-[#0e0225]/80 backdrop-blur-sm">
                           <Calendar className="h-3 w-3 mr-1" />
@@ -189,10 +189,10 @@ export default function Home() {
                           OJT
                         </Badge>
                       </div>
-                      <h1 className="text-2xl md:text-4xl font-bold mb-3 neon-text text-shadow-lg">
+                      <h1 className="text-lg sm:text-xl md:text-4xl font-bold mb-2 neon-text text-shadow-lg leading-tight">
                         {featuredPost.title}
                       </h1>
-                      <p className="text-gray-200 mb-6 max-w-3xl text-shadow-sm p-2 rounded-md md:bg-transparent md:p-0 md:backdrop-blur-none">
+                      <p className="text-gray-200 mb-4 max-w-3xl text-shadow-sm p-1 rounded-md text-sm sm:text-base md:bg-transparent md:p-0 md:backdrop-blur-none line-clamp-3">
                         {featuredPost.description}
                       </p>
                       <Link href={`/blog/${featuredPost.slug}`}>

@@ -104,7 +104,7 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
               dangerouslySetInnerHTML={{ __html: post.content }}
             />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-12">
               {post.images.map((image, index) => (
                 <div key={index} className="relative aspect-square rounded-lg overflow-hidden">
                   <Image
@@ -119,9 +119,9 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
           </article>
 
           {/* Previous/Next Navigation */}
-          <div className="flex justify-between max-w-4xl mx-auto my-12 gap-4">
+          <div className="flex flex-col md:flex-row gap-4 max-w-4xl mx-auto my-12">
             {prevPost ? (
-              <Link href={`/blog/${prevPost.slug}`} className="block flex-1">
+              <Link href={`/blog/${prevPost.slug}`} className="block w-full md:w-auto">
                 <div className="border border-purple-900/40 rounded-lg p-4 hover:bg-purple-900/10 transition-colors">
                   <div className="text-xs text-gray-400 mb-1 flex items-center">
                     <ArrowLeft className="h-4 w-4 mr-1" /> Previous
@@ -131,7 +131,7 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
               </Link>
             ) : <div />}
             {nextPost ? (
-              <Link href={`/blog/${nextPost.slug}`} className="block flex-1 text-right">
+              <Link href={`/blog/${nextPost.slug}`} className="block w-full md:w-auto text-right">
                 <div className="border border-purple-900/40 rounded-lg p-4 hover:bg-purple-900/10 transition-colors">
                   <div className="text-xs text-gray-400 mb-1 flex items-center justify-end">
                     Next <ArrowRight className="h-4 w-4 ml-1" />
