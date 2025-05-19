@@ -299,5 +299,33 @@ export const blogPosts: BlogPosts = {
       <p>Week 11 reinforced a valuable lesson: reliability matters. Whether it’s fixing devices, helping with physical tasks, or just being ready to assist, our support plays a vital role in keeping operations smooth and efficient.</p>
      
     `
+  },
+
+"week-12": {
+    slug: "week-12",
+    title: "Preparing for the Big Day",
+    date: "May 13-16, 2025",
+    author: "John Nebrej N. Rempis",
+    week: "Week 12",
+    src: "/uploads/week12/cover.jpg",
+    images: [
+      "/uploads/week12/gallery/pic1.jpg",
+      "/uploads/week12/gallery/pic2.jpg",
+      "/uploads/week12/gallery/pic3.jpg",
+      "/uploads/week12/gallery/pic4.jpg",
+      "/uploads/week12/gallery/pic5.jpg",
+      "/uploads/week12/gallery/pic6.jpg"
+    ],
+    description: "Sharing insights and finalizing preparations for our upcoming turnover event.",
+    content: `
+      <p>As the election neared, we took time to reflect, share opinions, and continue refining our system. Week 12 also marked key preparations for the first-ever INTERNovation 2025, where we will officially turn over our work to the organization and present our accomplishments.</p>
+      <h2>Talks Systems and Internovation Readiness</h2>
+      <p>The week before the national elections brought a mix of reflection and anticipation. Inside the office, we had open conversations about the coming election results. It was a moment to respectfully share our opinions and understand each other’s views on current events — a rare but meaningful pause from our usual routine.</p>
+      <p>On the development side, we continued polishing the RSTL Appointment Portal, making necessary improvements and preparing for its full turnover. We also had our CompTIA+ premiere lecture, giving us more insight into professional certification paths and what to expect in the tech industry.</p>
+      <p>One of the week’s highlights was presenting our system progress to our head, Ma’am Sheen, alongside interns from CSPC who were also completing their papers. It felt like a final checkpoint, ensuring everything was in place before our major event.</p>
+      <p>Speaking of which, we held a meeting for the upcoming 1st INTERNovation 2025 — a culminating event where all interns will present and turn over their systems and contributions to the agency. The event will also include a ceremonial recognition and distribution of certificates, making it a truly memorable milestone in our OJT journey.</p>
+      <p>This week helped us shift into final-gear mode: wrapping up, preparing to present, and reflecting on what we’ve accomplished so far.</p>
+     
+    `
   }
 }; 

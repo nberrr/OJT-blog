@@ -85,8 +85,25 @@ export default function Home() {
               <div className="absolute -right-20 -top-20 w-60 h-60 bg-purple-600/20 rounded-full blur-3xl"></div>
               <div className="absolute -left-20 -bottom-20 w-60 h-60 bg-blue-600/20 rounded-full blur-3xl"></div>
 
+              {/* Mobile logo - top right */}
+              <div className="absolute top-4 right-4 md:hidden">
+                <div className="relative w-12 h-12">
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 animate-pulse blur-md"></div>
+                  <div className="absolute inset-1 rounded-full bg-[#0a0118] flex items-center justify-center">
+                    <Image
+                      src="/DOSTlogo.png"
+                      alt="DOST Logo"
+                      width={100}
+                      height={100}
+                      className="object-contain w-8 h-8 drop-shadow-[0_1px_6px_blue]"
+                      priority
+                    />
+                  </div>
+                </div>
+              </div>
+
               <div className="relative flex flex-col md:flex-row items-center gap-6 md:gap-10">
-                <div className="md:w-2/3">
+                <div className="w-full md:w-2/3 pr-14 md:pr-0">
                   <h1 className="text-3xl md:text-5xl font-bold mb-4">
                     <span className="animated-gradient-text">The Art of Productive Laziness</span>
                   </h1>
@@ -107,8 +124,10 @@ export default function Home() {
                     </Link>
                   </div>
                 </div>
-                <div className="md:w-1/3 flex justify-center">
-                  <div className="relative w-48 h-48 md:w-64 md:h-64">
+
+                {/* Desktop logo */}
+                <div className="hidden md:flex md:w-1/3 justify-center">
+                  <div className="relative w-64 h-64">
                     <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 animate-pulse blur-md"></div>
                     <div className="absolute inset-1 rounded-full bg-[#0a0118] flex items-center justify-center">
                       <Image
@@ -116,7 +135,7 @@ export default function Home() {
                         alt="DOST Logo"
                         width={250}
                         height={250}
-                        className="object-contain w-24 h-24 md:w-32 md:h-32 drop-shadow-[0_1px_6px_blue] "
+                        className="object-contain w-32 h-32 drop-shadow-[0_1px_6px_blue]"
                         priority
                       />
                     </div>
@@ -147,24 +166,33 @@ export default function Home() {
                       className="w-full h-[300px] md:h-[400px] object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0e0225] via-[#0e0225]/70 to-transparent"></div>
-                    <div className="absolute top-4 right-4">
-                      <Badge className="bg-purple-600 hover:bg-purple-700">{featuredPost.week}</Badge>
+                    <div className="absolute top-0 right-0 z-10">
+                      <Badge className="bg-purple-600 hover:bg-purple-700 text-white whitespace-nowrap font-semibold shadow-lg border-0 rounded-tl-none rounded-br-none rounded-tr-md rounded-bl-md px-3 py-1">
+                        {featuredPost.week}
+                      </Badge>
                     </div>
+                    {featuredPost.slug === latestPost.slug && (
+                      <div className="absolute top-8 right-0 z-10">
+                        <Badge className="bg-purple-600 hover:bg-purple-700 text-white whitespace-nowrap font-semibold shadow-lg border-0 rounded-tl-none rounded-br-none rounded-tr-md rounded-bl-md px-3 py-1">
+                          Latest
+                        </Badge>
+                      </div>
+                    )}
                     <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-                      <div className="flex items-center space-x-4 mb-3">
-                        <Badge variant="outline" className="border-purple-500/50 text-purple-300">
+                      <div className="flex flex-wrap items-center gap-2 mb-3">
+                        <Badge variant="outline" className="border-purple-500/50 text-purple-300 whitespace-nowrap bg-[#0e0225]/80 backdrop-blur-sm">
                           <Calendar className="h-3 w-3 mr-1" />
                           {featuredPost.date}
                         </Badge>
-                        <Badge variant="outline" className="border-purple-500/50 text-purple-300">
+                        <Badge variant="outline" className="border-purple-500/50 text-purple-300 whitespace-nowrap bg-[#0e0225]/80 backdrop-blur-sm">
                           <Tag className="h-3 w-3 mr-1" />
                           OJT
                         </Badge>
                       </div>
-                      <h1 className="text-2xl md:text-4xl font-bold mb-3 neon-text">
+                      <h1 className="text-2xl md:text-4xl font-bold mb-3 neon-text text-shadow-lg">
                         {featuredPost.title}
                       </h1>
-                      <p className="text-gray-300 mb-6 max-w-3xl">
+                      <p className="text-gray-200 mb-6 max-w-3xl text-shadow-sm backdrop-blur-sm bg-[#0e0225]/40 p-2 rounded-md md:bg-transparent md:p-0 md:backdrop-blur-none">
                         {featuredPost.description}
                       </p>
                       <Link href={`/blog/${featuredPost.slug}`}>
