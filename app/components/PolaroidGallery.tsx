@@ -73,11 +73,11 @@ export default function PolaroidGallery() {
               }}
               initial={{ rotate: 0, x: 0, y: 0, opacity: 0 }}
               animate={{ ...transform, opacity: 1 }}
-              transition={{ type: 'spring', stiffness: 100, damping: 15, delay: i * 0.03 }}
+              transition={{ type: 'spring', stiffness: 100, damping: 15, delay: i * 0.01 }}
               whileHover={{ scale: 1.07, zIndex: 10, boxShadow: '0 8px 32px 0 rgba(80,0,120,0.18)' }}
               onClick={() => setSelectedImage(img)}
             >
-              <div className="relative w-full h-full bg-white rounded-lg shadow-lg border border-gray-200 flex flex-col items-center justify-center polaroid-inner">
+              <div className="relative w-full h-full bg-white shadow-lg border border-gray-200 flex flex-col items-center justify-center polaroid-inner">
                 <Image
                   src={img.src}
                   alt="Polaroid photo"
@@ -85,7 +85,7 @@ export default function PolaroidGallery() {
                   className="object-contain p-2"
                   sizes="(max-width: 600px) 90vw, 200px"
                 />
-                <div className="w-full text-center text-xs text-gray-500 font-mono pt-2 pb-1 bg-white rounded-b-lg">OJT</div>
+                <div className="w-full text-center text-xs text-gray-500 font-mono pt-2 pb-1 bg-white ">OJT</div>
               </div>
             </motion.div>
           );
@@ -108,7 +108,7 @@ export default function PolaroidGallery() {
               whileHover={{ scale: 1.07, zIndex: 10, boxShadow: '0 8px 32px 0 rgba(80,0,120,0.18)' }}
               onClick={() => setSelectedImage(img)}
             >
-              <div className="relative w-full h-full bg-white rounded-lg shadow-lg border border-gray-200 flex flex-col items-center justify-center polaroid-inner">
+              <div className="relative w-full h-full bg-white shadow-lg border border-gray-200 flex flex-col items-center justify-center polaroid-inner">
                 <Image
                   src={img.src}
                   alt="Polaroid photo"
@@ -116,7 +116,7 @@ export default function PolaroidGallery() {
                   className="object-contain p-2"
                   sizes="50vw"
                 />
-                <div className="w-full text-center text-xs text-gray-500 font-mono pt-2 pb-1 bg-white rounded-b-lg">OJT</div>
+                <div className="w-full text-center text-xs text-gray-500 font-mono pt-2 pb-1 bg-white ">OJT</div>
               </div>
             </motion.div>
           );
@@ -171,7 +171,6 @@ export default function PolaroidGallery() {
       <style jsx global>{`
         .polaroid-frame {
           box-shadow: 0 4px 16px 0 rgba(0,0,0,0.12), 0 1.5px 6px 0 rgba(0,0,0,0.10);
-          border-radius: 12px;
           background: #fff;
           transition: box-shadow 0.2s;
         }
