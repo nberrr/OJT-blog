@@ -220,7 +220,7 @@ export default function Blog() {
         </div>
       </section>
 
-      <footer className="relative z-10 mt-16">
+      <footer className="relative z-1 mt-16">
         <div className="tech-line w-full mb-8"></div>
         <div className="container mx-auto px-4 md:px-6 pb-8">
           <div className="grid md:grid-cols-4 gap-8">
