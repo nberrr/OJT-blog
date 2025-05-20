@@ -362,7 +362,7 @@ export default function Home() {
               <div className="glass-effect rounded-lg p-6">
                 <h3 className="text-lg font-bold mb-4 flex items-center">
                   <Tag className="h-4 w-4 mr-2 text-purple-400" />
-                  ROLES I'VE EXPLORED
+                MY HANDS-ON ROLES
                 </h3>
                 <div className="space-y-3">
                   <div className="flex items-center p-2 rounded-md hover:bg-purple-900/20 transition-colors">
